@@ -2,36 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>js流程</title> 
-<style>
-#box{
-  width: 100px;
-  height: 100px;
-  background: red;
-  display: none;
-  transition: all 500s;
-}
-</style>   
+<title>javacsript字符串类型方法</title>  
 </head>
 <body>
-  
-<button id="btn">点击我</button>  
-<div id="box"></div> 
-
-
 <script>
-  var btn = document.getElementById('btn');
-  var box = document.getElementById('box');
-  btn.onclick = fn;
-  function fn(){
-     box.style.display = 'block';
-  }
-  box.onmouseover = function(){
-     this.style.cssText = 'width:200px;height:200px;';
-  }
-  box.onmouseout = function(){
-     this.style.cssText = 'width:100px;height:100px;';
-  }
+  /*
+    字符串方法：
+
+    *** 字符串：字符串的length只可读，不可写 ***
+
+    string.charAt(索引);    
+
+
+
+
+
+  */
 </script>
 </body>
 </html>
