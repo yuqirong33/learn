@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>js流程</title> 
+<style>
+#box{
+  width: 100px;
+  height: 100px;
+  background: red;
+  display: none;
+  transition: all 500s;
+}
+</style>   
+</head>
+<body>
+  
+<button id="btn">点击我</button>  
+<div id="box"></div> 
+
+
+<script>
+  var btn = document.getElementById('btn');
+  var box = document.getElementById('box');
+  btn.onclick = fn;
+  function fn(){
+     box.style.display = 'block';
+  }
+  box.onmouseover = function(){
+     this.style.cssText = 'width:200px;height:200px;';
+  }
+  box.onmouseout = function(){
+     this.style.cssText = 'width:100px;height:100px;';
+  }
+</script>
+</body>
+</html>
+
+
+
