@@ -10,18 +10,39 @@
        基础知识小考
     */
     /*
-    1.下面代码，k的运行结果是：  B
+        1.下面代码，k的运行结果是：  B
         var i = 0,j = 0;
         for(;i<10,j<6;i++,j++){
             k = i +j;
         } 
-    A.16    B.10    C.6   D.0
+        A.16    B.10    C.6   D.0
 
-    2.var x = 1;
-    function(n){n = n+1};
-    y = fn(x);
-    y的值为： D
-    A。2   B.1  C.3   D.undefined
+
+        2.var x = 1;
+        function(n){n = n+1};
+        y = fn(x);
+        y的值为： D
+        A。2   B.1  C.3   D.undefined
+
+        3.[1,2,3,4].join('0').split('')的执行结果是
+        A.'1,2,3,4'    B.[1,2,3,4]   C.['1,'0','2','0','3','0','4']
+
+        4.下面代码的运行结果是：第一次弹   A   第二次弹   D    
+        function fn1(){ alert(1); }
+        alert( fn1() );
+        A.1   B.程序报错   C.alert(1)   D.undefined
+
+        5.以下代码运行后，结果为  
+        fn1();
+        var fn1 = function(a){ alert(a); }
+        A.1   B.程序报错   C.alert(1)    D.undefined
+
+        6.var n = 'miao wei ke tang'.indexOf('wei',6);n的值为
+        A. -1   B.5   C.程序报错   D.-10
+
+        7.下面对substring()方法描述不正确的是：
+        A.一共有两个参数
+
     */
 </script>
 </body>
