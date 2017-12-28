@@ -150,6 +150,31 @@
         21.下列方式中哪个可以判断数组中是否有大于10的值：C
         A.arr.every()    B.arr.filter()    C.arr.some()    D.arr.splie()   
 
+
+        22.function fn(arr){
+            alert(arr);
+            return function(a=15){
+                alert(a);
+            }
+            var arr = 5;
+        }
+        let f = fn(10);
+        f(20);
+        上面代码执行结果是？ E
+        A.20,5    B.5,15   C.20,10   D.5,10    E.报错
+
+
+        23.for(var i = 0;i < 5;i++){
+            setTimeout(function(){
+                console.log(i);
+            },500);
+        }
+        下面结果i是多少？ B
+        A.0,1,2,3,4    B.5,5,5,5,5   C.5   D.1
+        
+
+
+
     */
 </script>
 </body>
