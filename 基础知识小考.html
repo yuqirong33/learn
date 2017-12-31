@@ -156,7 +156,7 @@
             return function(a=15){
                 alert(a);
             }
-            var arr = 5;
+            let arr = 5;
         }
         let f = fn(10);
         f(20);
@@ -171,11 +171,72 @@
         }
         下面结果i是多少？ B
         A.0,1,2,3,4    B.5,5,5,5,5   C.5   D.1
+
         
+        问答题：
+        1.找到数组[-1,-2,1,10,4,5,8]中的最大值，至少写2中方法？
+
+        方法一：
+        let arr = [-1,-2,1,10,4,5,8];
+        let index = 0;
+        for(i = 0;i < arr.length;i++){
+            if(parseInt(arr[i]) > index){
+                index = parseInt(arr[i]);
+                console.log(index);
+            }
+        }
+
+        方法二：
+        let arr = [-1,-2,1,10,4,5,8];
+        arr.sort(function(a,b){
+            return a - b;
+        });
+        console.log(arr[arr.length - 1]);
+
+        方法三：
+        let arr = [-1,-2,1,10,4,5,8];
+        console.log(Math.max.apply(null,arr));
 
 
+        2.split()和join()的区别？
+        split() :  String.split(该参数指定的地方分割，该参数可指定返回的数组的最大长度);   
+                   字符串方法，方法用于把一个字符串分割成字符串数组。
+
+        join()  :  Array.join(指定要使用的分隔符); 如果省略该参数，默认使用逗号作为分隔符
+                   数组方法，方法用于把数组中的所有元素放入一个字符串。
+
+
+        3,分别写出数组方法 pop() push() unshift() shift() 的作用和返回值。
+        pop() : 方法用于删除并返回数组的最后一个元素。
+                方法将删除指定数组的最后一个元素，把数组长度减 1，并且返回它删除的元素的值。
+                如果数组已经为空，则 pop() 不改变数组，并返回 undefined 值。
+        
+        push() : 方法可把它的参数顺序添加一个或者多个到指定数组的尾部。
+                 它直接修改该数组，而不是创建一个新的数组。
+
+        unshift() ：方法可向数组的开头添加一个或更多元素，并返回新的长度。
+                    方法将把它的参数插入指定数组的头部，并将已经存在的元素顺次地移到较高的下标处，以便留出空间。
+                    该方法的第一个参数将成为数组的新元素 0，如果还有第二个参数，它将成为新的元素 1，以此类推。
+                    注意：该方法不创建新的创建，而是直接修改原有的数组。
+                
+        shift() ： 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+                   如果数组是空的，那么该方法将不进行任何操作，返回 undefined 值。
+                   注意：该方法不创建新数组，而是直接修改原有的数组。
+                   
+
+        4.封装一个函数，将字符串 "miao wei" 的第二个单词大写，然后拼成字符串miaoMei,并返回？（注意：封装成一个函数）
+        let str = "miao wei";
+        function fn(str){
+            let arr = str.split(' ');
+            return console.log(arr[0] + arr[1][0].toUpperCase() + arr[1]);
+        }
+        fn(str);
+
+
+        5.javascript
 
     */
+    
 </script>
 </body>
 </html>
