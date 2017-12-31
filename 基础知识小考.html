@@ -233,9 +233,29 @@
         fn(str);
 
 
-        5.javascript
+        5.javascript里typeof返回的结果有哪几种？并举例说明。
+        1）number : 0-9数字
+        2）string : 'miao wei'
+        3) object : {}、[]、null
+        4) function : function(){}
+        5) boolean : 0为false,1为true
+        6) undefined : var a;
 
+
+        6.写一个方法，找出字符串 "abcabcabcabcabcabda" 中 "ab" 出现的次数和位置:
+        let str = 'abcabcabcabcabcabda';
+        let arr = [];
+        let num = 0;
+        while(str.indexOf('ab',num) != -1 && num < str.length){
+            arr.push(str.indexOf('ab', num));
+            num = str.indexOf('ab', num) + 1;
+            console.log('出现的位置:' + arr + '出现的次数:' + arr.length);
+        }
+
+
+        
     */
+    
     
 </script>
 </body>
