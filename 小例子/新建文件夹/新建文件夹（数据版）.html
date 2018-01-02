@@ -212,6 +212,33 @@
 			}
 		}
 
+		/*
+		  双击span将span改为input修改文件名
+		  ondblclick  ->   双击事件
+		*/
+		span.ondblclick = function(){
+			text.style.display = 'block';
+			text.focus();   //点击完了直接聚焦
+		}
+        
+		/*
+		  onbulr -> 事件会在对象失去焦点时发生
+		*/
+		text.onblur = function(){
+            if(text.value){
+				span.innerText = text.value;
+				/*
+					循环数据，把input对应的数据的name修改掉。
+				*/
+				data.forEach(e=>{
+					if(span.parentNode.dataset.id == e.id){
+						e.name = text.value;
+					}
+				});
+			}
+			text.style.display = 'none';
+		}
+
 		fileDiv.appendChild(ico);
 		fileDiv.appendChild(check);
 		fileDiv.appendChild(span);
