@@ -145,7 +145,7 @@
 	*/
     //点击添加按钮  添加文件夹
 	add.onclick = function(){
-		if(num > len){
+		if(num < len){
 			files.appendChild(createDiv(num));
 		}
 		num ++;
@@ -185,9 +185,14 @@
         /*
 		  鼠标移入文件夹的移入、移除事件
 		*/
-		// fileDiv.onmouseover = function(){
-
-		// }
+		fileDiv.onmouseover = function(){
+            this.classList.add('fileActive');
+		}
+		fileDiv.onmouseout = function(){
+            if(!check.checked){
+				this.classList.remove('fileActive');
+			}
+		}
 
 		fileDiv.appendChild(ico);
 		fileDiv.appendChild(check);
