@@ -162,7 +162,15 @@
 
     //点击删除按钮删除选中文件夹
 	del.onclick = function(){
-		
+		let filesChild = files.children;
+		for(var i = 0 ;i <filesChild.length;i++){
+			if(filesChild[i].classList.contains('fileActive')){
+				filesChild[i].remove();
+				data.splice(i,1);
+				i--;
+				num--;
+			}
+		}
 	}
     
 
