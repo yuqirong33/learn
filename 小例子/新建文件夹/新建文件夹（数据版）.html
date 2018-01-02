@@ -146,7 +146,8 @@
     //点击添加按钮  添加文件夹
 	add.onclick = function(){
 		if(num < len){
-			files.appendChild(createDiv(num));
+			createData(); //num少于实际数据的时候创建数据
+			files.appendChild(createDiv(num)); //插入创建元素
 		}
 		num ++;
 		if(num > 3){
@@ -166,13 +167,22 @@
 		for(var i = 0 ;i <filesChild.length;i++){
 			if(filesChild[i].classList.contains('fileActive')){
 				filesChild[i].remove();
-				data.splice(i,1);
+				data.splice(i,1);//array.splice(起始位置，删除个数num),删除一个数据记录一个
 				i--;
 				num--;
 			}
 		}
 	}
     
+	//当数据少于3个那么创建新的数据，点击添加按钮的时候照样是可以添加
+	function createData(){
+		if(data.length < 3){
+			data.push({
+				id: +new Date(), //添加的id为时间戳，暂时的
+				name:'新建文件夹'
+			});
+		}
+	}
 
 	//用BOM创建文件夹
 	function createDiv(num){
