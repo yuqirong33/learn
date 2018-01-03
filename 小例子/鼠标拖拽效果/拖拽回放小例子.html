@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>鼠标拖拽效果</title>
+<style>
+    #box{
+        width: 100px;
+        height: 100px;
+        top: 50px;
+        left: 0px;
+        background: red;
+        position: absolute;
+    }
+</style>  
+</head>
+<body>
+
+<input type="button" value="回放" id="btn">
+<div id="box"></div>
+
+<script>
+  const box = document.getElementById('box');
+  const btn = document.getElementById('btn');
+
+  let disX = 0;
+  let disY = 0;
+  let arrY = [];
+  let arrX = [];
+
+  box.onmousedown = function(ev){
+      disX = ev.pageX - box.offsetLeft;  
+      disY = ev.pageY - box.offsetTop;
+      
+      arrX.push(box.offsetLeft)
+      arrY.push(box.offsetTop);
+
+
+      document.onmousemove = function(e){
+          box.style.left = e.pageX - disX + 'px';
+          box.style.top = e.pageY - disY + 'px';
+          
+          arrX.push((e.pageX - disX));
+          arrY.push((e.pageY - disY));
+      }
+
+      document.onmouseup = function(){
+           document.onmousemove = document.onmouseup = null;
+      }
+      return false;  //阻止默认行为
+  }
+
+  let timer = null;
+  btn.onclick = function(){
+      timer = setInterval(function(){
+          if(!arrX.length && !arrY.length){
+              clearInterval(timer);
+          }
+          box.style.left = arrX.pop() + 'px';
+          box.style.top = arrY.pop() + 'px';
+      },10);
+  }
+  
+</script>
+</body>
+</html>
+
