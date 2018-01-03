@@ -174,9 +174,10 @@ const checkAll = document.getElementById('checkAll');
 const rmAll = document.getElementById('rm');
 
 let num = data[data.length-1].id;  //获取现有数据的最后一条，添加新数据时候给num++
+
 //渲染数据
 render();
-function render(){
+function render(){ //渲染数据
 	let str = '';
 	data.forEach(e=>{
        let c = '';
@@ -206,7 +207,8 @@ add.onclick = function(){
 		return;
 	}
 
-	num ++;
+	num ++;  //这个是ID的值，每一次添加一个num加1
+
     //每次在table里添加数据的时候，相应的也要在data数据里添加
 	data.push({
 		id:num,   //num++的值
