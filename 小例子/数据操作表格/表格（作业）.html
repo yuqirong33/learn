@@ -220,13 +220,24 @@ add.onclick = function(){
 
 //点击排序
 stBtn.onclick = function(){  //排序根据编号和年龄的从高到低或者从低到高
-	let s1v = s1.value;  //获取到是编号还是年龄的值
+	let s1v = s1.value;  //获取到是编号还是年龄的值   id || price
 	let s2v = s2.value;  //获取到是从高到低还是从低到高的值
 
 	if(s2v === 'a'){ //判断从高到低的时候要做的事情
-	
+
+	   data.sort(function(a,b){  //从高到低是 b-a,a和b要是数字才能做排序比较
+           return b[s1v] - a[s1v];
+	   });
+
+	}else{
+
+		data.sort(function(a,b){  //从高到低是 b-a,a和b要是数字才能做排序比较
+           return a[s1v] - b[s1v];
+	   });
 
 	}
+	
+	render();
 
 }
 
