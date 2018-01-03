@@ -166,14 +166,16 @@ const tBody = tab.tBodies[0];
 const add = document.getElementById('add');
 const name = document.getElementById('name');
 const age = document.getElementById('age');
-let num = data[data.length-1].id;
+
 const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const stBtn = document.getElementById('stBtn');
 const checkAll = document.getElementById('checkAll');
 const rmAll = document.getElementById('rm');
 
+let num = data[data.length-1].id;  //获取现有数据的最后一条，添加新数据时候给num++
 //渲染数据
+render();
 function render(){
 	let str = '';
 	data.forEach(e=>{
@@ -192,6 +194,26 @@ function render(){
 	});
 	tBody.innerHTML = str;
 	name.value = age.value = '';  //输入完了之后清空value值
+}
+
+//点击添加数据
+add.onclick = function(){
+	let nv = name.value;
+	let av = age.value;
+
+	if(!nv || !av){  //判断添加的名字和年龄不能为空
+		alert('请输入内容');
+		return;
+	}
+
+	num ++;
+    //每次在table里添加数据的时候，相应的也要在data数据里添加
+	data.push({
+		id:num,   //num++的值
+		name:nv,  //姓名输入框的值
+        price:av  //年龄输入框的值
+	});
+	render();  //添加了数据之后，再次渲染页面，相当于更新
 }
 
 
