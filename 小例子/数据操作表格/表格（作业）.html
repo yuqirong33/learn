@@ -84,16 +84,16 @@ input[type="text"] {
 		</li>
 		<li>
 			<span>排序</span>
-			<select>
+			<select id="s1">
 				<option value="price">年龄</option>
 				<option value="id">编号</option>
 			</select>
-			<select>
-				<option value='2'>从高到底</option>
-				<option value='1'>从低到高</option>
+			<select id="s2">
+				<option value="2">从高到底</option>
+				<option value="1">从低到高</option>
 			</select>
-			<input type="button" value="提交" />
-			<input type="button" value="批量删除" />
+			<input type="button" value="提交" id="stBtn"/>
+			<input type="button" value="批量删除" id="rm" />
 		</li>
 	</ul>
 	<table id="tab" width="600" align="center" border="1">
@@ -133,69 +133,55 @@ input[type="text"] {
 	6.删除
 
 */
-let data = [
+let data = [  //这是一个数组，数组里包含对象
     {
         'id' : 1,
         'name' : 'momo',
-        'price' : 36
+        'price' : 36,
+		'checked' : false
     },
     {
         'id' : 2,
         'name' : '小恋',
-        'price' : 40
+        'price' : 40,
+		'checked' : false
     },
     {
         'id' : 3,
         'name' : 'yaya',
-        'price' : 20
+        'price' : 20,
+		'checked' : false
     },
     {
         'id' : 4,
         'name' : 'feifei',
-        'price' : 10
+        'price' : 10,
+		'checked' : false
     },
     {
         'id' : 5,
         'name' : 'hhehe',
-        'price' : 35
+        'price' : 35,
+		'checked' : false
     }
 ];
 
-const tab = document.getElementById('tab');
-const tBody = tab.tBodies[0];
-const add = document.getElementById('add');
-const name = document.getElementById('name');
-const age = document.getElementById('age');
+const tab = document.getElementById('tab');  //table
+const tBody = tab.tBodies[0]; //tbody
+const add = document.getElementById('add');  //添加按钮
+const name = document.getElementById('name'); //姓名
+const age = document.getElementById('age'); //年龄
 
-const s1 = document.getElementById('s1');
-const s2 = document.getElementById('s2');
-const stBtn = document.getElementById('stBtn');
-const checkAll = document.getElementById('checkAll');
-const rmAll = document.getElementById('rm');
+const s1 = document.getElementById('s1');  //排序下拉年龄和编号
+const s2 = document.getElementById('s2');  //排序下拉从高到低和从低到高
+const stBtn = document.getElementById('stBtn');  //排序提交按钮
+const checkAll = document.getElementById('checkAll');   //全选勾选框
+const rmAll = document.getElementById('rm');   //批量删除
 
 let num = data[data.length-1].id;  //获取现有数据的最后一条，添加新数据时候给num++
 
-//渲染数据
+//渲染原始数据
 render();
-function render(){ //渲染数据
-	let str = '';
-	data.forEach(e=>{
-       let c = '';
-	   str += `<tr>
-				<td><input type="checkbox"></td>
-				<td>${e.id}</td>
-				<td>${e.name}</td>
-				<td>${e.price}</td>
-				<td>
-					<input type="button" value="删除"/>
-					<input type="button" value="上移">
-					<input type="button" value="下移">
-				</td>
-			</tr>`;
-	});
-	tBody.innerHTML = str;
-	name.value = age.value = '';  //输入完了之后清空value值
-}
 
 //点击添加数据
 add.onclick = function(){
@@ -213,8 +199,10 @@ add.onclick = function(){
 	data.push({
 		id:num,   //num++的值
 		name:nv,  //姓名输入框的值
-        price:av  //年龄输入框的值
+        price:av,  //年龄输入框的值
+		checked:false
 	});
+	checkAll.checked = every();  //点击全选所有的都全选
 	render();  //添加了数据之后，再次渲染页面，相当于更新
 }
 
@@ -223,24 +211,112 @@ stBtn.onclick = function(){  //排序根据编号和年龄的从高到低或者�
 	let s1v = s1.value;  //获取到是编号还是年龄的值   id || price
 	let s2v = s2.value;  //获取到是从高到低还是从低到高的值
 
-	if(s2v === 'a'){ //判断从高到低的时候要做的事情
+	if(s2v === '2'){ //判断从高到低的时候要做的事情
 
 	   data.sort(function(a,b){  //从高到低是 b-a,a和b要是数字才能做排序比较
            return b[s1v] - a[s1v];
 	   });
-
+	  
 	}else{
 
-		data.sort(function(a,b){  //从高到低是 b-a,a和b要是数字才能做排序比较
+		data.sort(function(a,b){  //从低到高是 a-b,a和b要是数字才能做排序比较
            return a[s1v] - b[s1v];
-	   });
+	    });
 
 	}
-	
 	render();
-
 }
 
+//点击全选
+checkAll.onclick = function(){
+	data.forEach(e=>{
+       e.checked = this.checked;
+	});
+	render();
+}
+
+//批量删除
+rmAll.onclick = function(){
+	data = data.filter(e=>!e.checked);
+	render();
+}
+
+//渲染数据
+function render(){
+	let str = '';
+	data.forEach(e=>{ //data是数组用forEach  渲染有数据有多少条到页面中
+       let c = '';
+	   //e.checked ? 'checked':''   这句话意思是如果checked为true那么就勾选 不是true那么就为空
+	   str += `<tr>
+				<td><input type="checkbox" ${e.checked ? 'checked':''}></td>
+				<td>${e.id}</td>
+				<td>${e.name}</td>
+				<td>${e.price}</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+			</tr>`;
+	});
+	tBody.innerHTML = str;
+	name.value = age.value = '';  //输入完了之后清空value值
+
+	//上移 下移  渲染完数据才能获取到数据的内容
+	let inputs = tBody.querySelectorAll('input[type="checkbox"]');
+	let up = tBody.querySelectorAll('input[value="上移"]');
+	let down = tBody.querySelectorAll('input[value="下移"]');
+	let rm = tBody.querySelectorAll('input[value="删除"]');
+    
+	for(let i = 0;i <inputs.length;i++){
+		inputs[i].onclick = function(){
+			data[i].checked = this.checked;
+			checkAll.checked = every();
+		}
+
+		//上移 
+		up[i].onclick = function(){
+			//data[i]当前的数据
+			//data[i-1]上一个数据
+
+			if(data[i-1]){  //交换数据  渲染数据
+				let c = data[i];
+				data[i] = data[i-1];
+                data[i-1] = c;
+				render();
+			}
+		}
+
+        //下移
+		down[i].onclick = function(){
+			//data[i]当前的数据
+			//data[i+1]下一个数据
+
+			if(data[i+1]){  //交换数据  渲染数据
+				let c = data[i];
+				data[i] = data[i+1];
+                data[i+1] = c;
+				render();
+			}
+		}
+
+		//删除
+		rm[i].onclick = function(){
+			data.splice(i,1); //splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。删除当前的
+			checkAll.checked = every();
+			render();
+		}
+
+	}
+}
+
+function every(){
+	//如果没有数据了，直接return false
+	if(!data.length){
+		return false;
+	}
+	return data.every(e => e.checked);  //查看数据是不是全部为true
+}
 
 
 </script>
