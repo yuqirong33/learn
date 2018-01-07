@@ -30,7 +30,7 @@
     const box = document.getElementById('box');
 
     let timer = null;
-    let speed = 5;
+    let speed = 10;
 
     timer = setInterval(fn,20);
 
@@ -57,7 +57,7 @@
         obj[ev.keyCode] = true;
     }
 
-    document.onkeyup = function(){
+    document.onkeyup = function(ev){
         obj[ev.keyCode] = false;
 
         let num = 4;
@@ -66,6 +66,10 @@
             if(!obj[attr]){
                 num -- ;
             }
+        }
+        if(num = 0){
+            clearInterval(timer);
+            timer = null;  //真的关了
         }
     }
 
