@@ -19,7 +19,55 @@
     <div id="box"></div>
 
 <script>
-    
+    //创建一个对象 为左上右下的按键值
+    let obj = {
+        37:false, //左边
+        38:false, //上
+        39:false, //右
+        40:false  //下
+    };
+
+    const box = document.getElementById('box');
+
+    let timer = null;
+    let speed = 5;
+
+    timer = setInterval(fn,20);
+
+    function fn(){
+        //每次移动的距离  相应的加减
+        if(obj[38]){  //上
+            box.style.top = box.offsetTop - speed + 'px';
+        }
+        if(obj[40]){  //下
+            box.style.top = box.offsetTop + speed + 'px';
+        }
+        if(obj[37]){  //左
+            box.style.left = box.offsetLeft - speed + 'px';
+        }
+        if(obj[39]){  //右
+            box.style.left = box.offsetLeft + speed + 'px';
+        }
+    }
+
+    document.onkeydown = function(ev){
+        if(!timer){
+            timer = setInterval(fn,20);
+        }
+        obj[ev.keyCode] = true;
+    }
+
+    document.onkeyup = function(){
+        obj[ev.keyCode] = false;
+
+        let num = 4;
+
+        for(var attr in obj){
+            if(!obj[attr]){
+                num -- ;
+            }
+        }
+    }
 
 </script>
 </body>
