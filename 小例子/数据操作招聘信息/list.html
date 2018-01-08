@@ -208,6 +208,8 @@ const nav = document.getElementById('leftList');
 const rightList = document.getElementById('rightList');
 const page = document.getElementById('nav');
 
+let newData = data.sh;
+
 //渲染导航
 let list = data.list;
 let html = '';
@@ -230,6 +232,12 @@ btns.forEach((e,i)=>{
 		window.location.hash = 'lx=' + e.dataset.lx; //给点击导航时指定hash值  为了与列表对应是社会的还是校园的
 	}
 })
+
+window.onchange = function(){
+	let hash = window.location.hash.split('=')[1];
+	console.log(hash);
+    newData = data[hash];
+}
 
 
 
