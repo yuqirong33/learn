@@ -223,9 +223,17 @@ nav.innerHTML = html;
 let btns = Array.from(nav.children);  //某个元素下的子节点用children
 btns.forEach((e,i)=>{
 	e.onclick = function(){
-		
+		btns.map( e =>{  //等同于for循环
+           e.className = '';
+		});
+		e.className = 'active';
+		window.location.hash = 'lx=' + e.dataset.lx; //给点击导航时指定hash值  为了与列表对应是社会的还是校园的
 	}
 })
+
+
+
+
 </script>
 </body>
 </html>
