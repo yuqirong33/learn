@@ -276,7 +276,7 @@ function createPage(){
 page.onclick = function(ev){
 	if(ev.target.tagName === 'A'){
 		if(!isNaN(ev.target.innerText*1)){
-			rightList.innerHTML = 
+			rightList.innerHTML = render(ev.target.innerText-1);
 		}
 	}
 }
