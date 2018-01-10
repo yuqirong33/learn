@@ -229,14 +229,56 @@ btns.forEach((e,i)=>{
            e.className = '';
 		});
 		e.className = 'active';
-		window.location.hash = 'lx=' + e.dataset.lx; //给点击导航时指定hash值  为了与列表对应是社会的还是校园的
+		//let h = 'lx=' + e.dataset.lx;
+		//window.location.hash = h; //给点击导航时指定hash值  为了与列表对应是社会的还是校园的
 	}
 })
 
-window.onchange = function(){
-	let hash = window.location.hash.split('=')[1];
-	console.log(hash);
-    newData = data[hash];
+// window.onchange = function(){
+// 	let hash = window.location.hash.split('=')[1];
+// 	console.log(hash);
+//     newData = data[hash];
+// }
+rightList.innerHTML = render();
+//渲染列表
+function render(num=0){
+	let html = '';
+	for(var i=num*4;i<num*4+4;i++){
+		let d = newData.text[i];
+		html+=`
+			<li>
+				<span class="num">${data.add0(i+1)}</span>
+				<div class="list">
+					<a href=""><span class="job">职位需求：${d.zw}</span><span>需求人数：${d.rs}名</span><time>${data.formateDate(d.sj)}</time></a>
+					<p><span class="text">岗位要求：${d.info[0].l.join('')}</span><a href="javascript:;">查看详情>></a></p>
+				</div>
+			</li>
+		`;
+	}
+	return html;
+}
+
+//渲染翻页
+createPage();
+function createPage(){
+	let len = Math.ceil(newData.text.length/4);
+	let pageStr = `<a href="javascript:;">&lt;</a>`;
+	for(var i = 0;i <len;i++){
+		pageStr +=`<a class="${i==0?'avtive':''}" href="javascript:;">${i+1}</a>`;
+	}
+	pageStr += `<a href="javascript:;">&gt;</a>`;
+	page.innerHTML = pageStr;
+}
+
+/*
+  点击切换数据
+*/
+page.onclick = function(ev){
+	if(ev.target.tagName === 'A'){
+		if(!isNaN(ev.target.innerText*1)){
+			rightList.innerHTML = 
+		}
+	}
 }
 
 
