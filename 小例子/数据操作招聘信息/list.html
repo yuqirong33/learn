@@ -204,87 +204,128 @@
 <script src="js/data.js"></script>
 <script>	
 
-const nav = document.getElementById('leftList');	
-const rightList = document.getElementById('rightList');
-const page = document.getElementById('nav');
+//导航
+	const nav = document.getElementById('leftList');
+	//数据列表页
+	const rightList = document.getElementById('rightList');
+	//页码
+	const page = document.getElementById('nav');
 
-let newData = data.sh;
+	//默认的数据（校园）
+	let hh = window.location.hash;
+	let h = '';
+	if(hh){
+		h = hh.substring(1);
+	}else{
+		h = 'lx=sh';
+	}
+	window.location.hash = h;//为了一会去拼接hash(代表的是校园还是社会)
+	
+	let newData = data[h.split('=')[1]];
 
-//渲染导航
-let list = data.list;
-let html = '';
-list.forEach((e,i)=>{
-   	html +=`<li data-lx="${e.lx}" class="${i==0?'active':''}">
+
+	/*
+		渲染导航
+		<li><span>社会招聘</span>society</li>
+		<li class="active"><span>校园招聘</span>campus</li>
+	*/
+
+	let list = data.list;
+	let html = '';
+	
+	list.forEach((e,i) => {
+		html += `
+			<li data-lx="${e.lx}" class="${i==0?'active':''}">
 				<span>${e.text}</span>
 				${e.eng}
-			</li>`;
-});
-nav.innerHTML = html;
-
-//给导航增加点击事件
-let btns = Array.from(nav.children);  //某个元素下的子节点用children
-btns.forEach((e,i)=>{
-	e.onclick = function(){
-		btns.map( e =>{  //等同于for循环
-           e.className = '';
-		});
-		e.className = 'active';
-		//let h = 'lx=' + e.dataset.lx;
-		//window.location.hash = h; //给点击导航时指定hash值  为了与列表对应是社会的还是校园的
-	}
-})
-
-// window.onchange = function(){
-// 	let hash = window.location.hash.split('=')[1];
-// 	console.log(hash);
-//     newData = data[hash];
-// }
-rightList.innerHTML = render();
-//渲染列表
-function render(num=0){
-	let html = '';
-	for(var i=num*4;i<num*4+4;i++){
-		let d = newData.text[i];
-		html+=`
-			<li>
-				<span class="num">${data.add0(i+1)}</span>
-				<div class="list">
-					<a href=""><span class="job">职位需求：${d.zw}</span><span>需求人数：${d.rs}名</span><time>${data.formateDate(d.sj)}</time></a>
-					<p><span class="text">岗位要求：${d.info[0].l.join('')}</span><a href="javascript:;">查看详情>></a></p>
-				</div>
 			</li>
 		`;
-	}
-	return html;
-}
+	});
+	nav.innerHTML = html;
+	
+	let btns = Array.from(nav.children);
+	btns.forEach((e,i)=>{
+		e.onclick = function(){
+			btns.map(e=>e.className='');
+			e.className = 'active';	
+			h = 'lx='+e.dataset.lx
+			window.location.hash = h;
+		}
+	});
 
-//渲染翻页
-createPage();
-function createPage(){
-	let len = Math.ceil(newData.text.length/4);
-	let pageStr = `<a href="javascript:;">&lt;</a>`;
-	for(var i = 0;i <len;i++){
-		pageStr +=`<a class="${i==0?'avtive':''}" href="javascript:;">${i+1}</a>`;
-	}
-	pageStr += `<a href="javascript:;">&gt;</a>`;
-	page.innerHTML = pageStr;
-}
 
-/*
-  点击切换数据
-*/
-page.onclick = function(ev){
-	if(ev.target.tagName === 'A'){
-		if(!isNaN(ev.target.innerText*1)){ //是数字就进来
-			rightList.innerHTML = render(ev.target.innerText-1);
-			Array.from(page.children).forEach(e=>{e.className = ''});
-			ev.target.className = 'active';
+	/*
+		渲染视图
+	*/
+
+	rightList.innerHTML = render();
+	/*
+		0   0-3
+		1   4-7
+		2   8-11
+
+	*/
+	function render(num=0){
+		let temp = '';
+		for(var i=num*4;i<num*4+4;i++){
+			let d = newData.text[i];
+			
+			if(d){
+				temp += `
+					<li>
+						<span class="num">${data.add0(i+1)}</span>
+						<div class="list">
+							<a href="content.html?${h.split('=')[1]}&${i}">
+								<span class="job">职位需求：${d.zw}</span><span>需求人数：${d.rs}名</span><time>${data.formateDate(d.sj)}</time>
+							</a>
+							<p><span class="text">岗位要求：${d.info[0].l.join('')}</span><a href="javascript:;">查看详情>></a></p>
+						</div>
+					</li>
+				`;
+			}
+		}
+		return temp;
+	}
+
+	/*
+		分页
+		<a href="javascript:;">&lt;</a>
+		<a class="active" href="javascript:;">1</a>
+	*/
+	createPage();
+	function createPage(){
+		let len = Math.ceil(newData.text.length/4);
+		let pageStr = '<a href="javascript:;">&lt;</a>';
+		for(var i=0;i<len;i++){
+			pageStr += `<a class="${i==0?'active':''}" href="javascript:;">${i+1}</a>`;
+		}
+		pageStr += '<a href="javascript:;">&gt;</a>';
+		page.innerHTML = pageStr;
+	}
+
+
+	/*
+		点击切换数据
+	*/
+
+	page.onclick = function(ev){
+		if(ev.target.tagName === 'A'){
+			if(!isNaN(ev.target.innerText*1)){
+				rightList.innerHTML = render(ev.target.innerText-1);
+				Array.from(page.children).forEach(e=>e.className='');
+				ev.target.className = 'active';
+			}
 		}
 	}
-}
 
 
 
+	window.onhashchange = function(){
+		let hash = window.location.hash.split('=')[1]; //?
+		newData = data[hash];
+		rightList.innerHTML = render(); //渲染数据
+		createPage(); //渲染分页
+	}
 
 </script>
 </body>
