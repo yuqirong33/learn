@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+    
+        /*----------------------------------第一次听写-------------------------------
+
+        1.如何求得一个数组中的最大值。
+    
+        let arr = [1,6,2,7,3,9];
+        let Max = -Infinity;
+        for(var i=0;i<arr.length;i++){
+            if(arr[i] > Max){
+                Max = arr[i];
+            }
+        }
+        // console.log(Max);
+
+        
+            2.取余的规律
+
+            a > b 取余 a/b余几？
+
+            a < b 取a
+
+            a == b 取0 
+        
+        // console.log(5%2); 10%15   20%12
+        // console.log(4%5);
+
+        
+            什么是自定义属性，一般用在哪个地方
+
+            在非空对象下添加一个自定义属性（{},[],function）
+
+            1.有多个对象的情况下，每个对象都有自己的一套属性
+
+            2.行间的属性如果是系统自带的，比如box.id，那么可以直接通过对象.的方式获取
+            如果不是系统自带的，那么为undefined
+            
+            3.添加索引（操作一个东西的时候还要关联另一个东西）
+
+            作为一个标识好去对应。
+
+        
+        // alert(typeof null);
+        // console.log(box.id);
+        // box.index = 1;
+        // console.log(box.index);
+
+        
+            4.选项卡的定点清除思路
+
+            1）
+                预设一个默认元素
+            2）
+                在触发事件的时候先清掉预设的className
+                再清掉预设元素对应（divs[预设元素.index]）的div的className
+            3）
+                当前触发事件对象的className变为active（btns[this.index].className = 'active'）
+                把当前触发事件对象.索引的div的className设置为show
+            4）
+            *** 把预设的默认元素改变成this，以便下一次使用。
+        
+
+        =========================================================
+            数据类型有哪些？分别长什么样子？什么时候会出现？
+
+            string（''||""）,number(0-9),boolean(true,false),
+            undefined[
+                1.声明了一个变量没有赋值
+                2.函数的默认返回值
+                3.对象中没有这个属性(数组中找不到这个值)
+                4.函数没有传实参，去访问形参的时候
+                5.预解析的时候var的上面会出现undefined
+            ]
+            ,null[
+                1.页面中没有这个元素
+                2.script标签写在元素的上面，没有window.onload
+            ]
+            ,object
+            ,symbol
+
+            typeof版：(小写字符串)
+                没有null(object)，有function
+
+
+
+        
+
+        
+        var a;
+        function fn(a){
+            alert(a);
+        }
+        //fn();
+        // var b = {
+        //     name:'小黑',
+        //     age:18,
+        //     job:'前端开发',
+        //     length:3
+        // };
+        // alert(arr2);
+        var arr2 = [1,2,3,4,5,6];
+        
+
+
+        // console.log(a);
+        // var b = fn();
+        // console.log(b['name']);
+        // console.log(this['name']); // '' window下有name值为''
+        // console.log(arr2);
+
+
+        // for(var i=0;i<arr2.length;i++){
+        //     console.log(arr2[i]);
+        // }
+
+        ******
+            举例强制类型转换和隐式类型转换不少于2个
+
+            parseInt
+            parseFloat
+            Number
+
+            + '10'  -> number 10
+
+            '10' + 10 ->  '1010'
+
+            '100'-2 -> number 98
+
+            '100' * 1 -> number 100
+
+        ******
+
+        
+            a && b
+                如果a成立还会去看b，结果一定是b
+                如果a不成立，结果a
+                
+
+            a||b 各是什么意思
+
+                如果a成立，就不会去看b了，结果为a
+                如果a不成立，就会去看b，结果是b
+        
+        // console.log(0 && 2);
+        // console.log(1 || 2);
+
+        
+            8.== === 的区别
+
+            == 不会对比数据类型，而且会转换左右两边的值（双方转成一样的数据类型然后比较）。
+
+            a===b 全等 会去比较数据类型，不会转换左右两边的值。
+
+
+        
+
+        
+            使用取反时发生了什么
+
+            var str = '呵呵';
+
+            !str  -> false 
+
+            隐式类型转换了，能把所有的数据类型直接转成布尔值，并且取相反值
+
+            !!str -> true 小技巧
+        
+
+        =======================================================
+            什么是真什么是假：
+            
+            真:非空对象([],{},fn)、true、非空字符串、非0数字、function、symbol
+
+            假:NaN,null,false,空字符串,undefined,0
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------第二次听写-------------------------------
+    
+        1.小明今年18岁，职业是前端，性别男，住辉煌国际大厦，
+        他有2个妹妹，一个妹妹叫小红，另一个妹妹叫小兰，小红17，
+        职业学生，小兰18，职业：演员，用对象去描述刚刚说的话
+    
+
+        // let 小明 = {
+        //     sex:'男',
+        //     age:18,
+        //     job:'前端',
+        //     add:'辉煌国际大厦',
+        //     sister:[
+        //         {
+        //             name:'小红',
+        //                sex:'女'
+        //             age:17,
+        //             job:'学生'
+        //         },
+        //         {
+        //             name:'小兰',
+        //                 sex:'女'
+        //             age:18,
+        //             job:'演员'
+        //         }
+        //     ]
+        // }
+
+        // let obj = {
+        //     name:'小明',
+        //     sex:'男',
+        //     age:18,
+        //     job:'前端',
+        //     add:'辉煌国际大厦',
+        //     sister:[
+        //         {
+        //             name:'小红',
+        //             age:17,
+        //             job:'学生'
+        //         },
+        //         {
+        //             name:'小兰',
+        //             age:18,
+        //             job:'演员'
+        //         }
+        //     ]
+        // }
+
+        
+            2.var跟let的区别
+
+            1.var声明的时候会在全局（window）下挂一个属性
+                let是不会的
+                var a = 10;
+                console.dir(window);  //window.a 
+
+                let a = 10;
+                console.dir(window);  //window下没有a
+
+
+            2.在一个域下，var同名可以有多个,let只能有一个（函数的参数也不能和函数体内的变量名一样）
+
+                let a = 10;
+                let a = 12;  //报错
+
+                var a = 10;
+                var a = 12; //12
+
+
+            3.在一个域下 var 有预解析，let是没有的（有暂存死区）
+
+                console.log(a); //报错
+                let a = 10;
+                
+                console.log(a); //undefined
+                var a = 10;
+
+                function fn(a){
+                    var a = 10;
+                    // let a = 10; //报错
+                    console.log(a);
+                }
+                fn(10);
+        
+
+            4.let支持块级作用域。
+
+                {
+                    // let a = 10;
+                    var a = 10;
+                }
+                console.log(a);
+
+        
+
+
+        
+            3.call跟apply，bind的区别
+
+            改变this指向,都函数自身的方法。
+
+            call,有多个参数，从第二个起为实参。
+                fn.call(document,1,2);
+
+            apply,就2个参数，第二个参数是数组，数组中放的是实参
+                fn.apply(document,[1,2]);
+
+            bind(this)
+                this绑定之后是不调用的,也可以有多个参数,
+                从第二个参数起，就是实参的各式个数,
+                它的返回值是一个改变this的函数
+
+                    let f = fn.bind(document,1,2);
+                    f();
+
+                返回值也可以传实参。
+
+                    let f = fn.bind(document);
+                    f(1,2);
+        
+
+        // function fn(a,b){
+        //     alert(a+b);
+        //     console.log(this);
+        // }
+        // fn(1,2);
+        // fn.call(document,1,2);
+        // fn.apply(document,[1,2]);
+        // let f = fn.bind(document);
+        // f(1,2);
+        // console.dir(fn);
+
+        
+            4.什么叫函数返回值,
+
+                整个函数名||方法名 + 括号就是返回值并且还会把函数体内的代码执行一遍
+            
+                function fn(a,b){
+                    alert(a+b);  
+                    console.log(this);
+                }
+                let ff = fn(1,2);  //会执行函数体内的代码
+                console.log(ff); //打印函数返回值
+            
+
+            return 是什么，函数的返回值就是什么，
+
+            return的用法？
+            
+            1.在函数外部想访问到函数内部的运算结果就用return;
+            2.终止return后面的代码执行
+
+        
+
+        // function fn(a,b){
+        //     // alert(a+b);  
+        //     // console.log(this);
+        //     return a + b;
+        //     alert(a);  //return后面都不执行
+        // }
+        // let f = fn(2,3);
+        // console.log(typeof f);
+
+
+        // let c = 10;
+        // let ab = 0;
+        // function fn(a,b){
+        //     // let ab = a + b;
+        //     // console.log(ab);
+        //     // return ab;
+        //     ab = a + b;
+        // }
+        // // let ab = fn(2,3); //ab就是函数的返回值
+        // fn(2,3);
+        // console.log(c + ab); //15;
+
+
+        
+            5.break和return哪有不同
+
+            break: 
+                终止for循环的
+
+            return:
+                终止return后面的
+        
+
+    //     function fn(){
+    //         for(var i=0;i<3;i++){
+    //             if(i == 2){
+    //                    return;
+    ////                 break;
+    //             }
+    //             alert(i);
+    //         }
+    //     }
+    //     fn();
+    //     console.log(fn());
+
+        // for(var i=0;i<3;i++){
+        //     if(i == 2){
+        //         return;
+        //     }
+        //     alert(i);
+        // }
+        //a 0,1   b报错（√） c 0,1,报错
+
+    
+        函数声明方式有哪些，什么是形参什么是实参，
+        实参能传哪些数据类型？
+        
+        fn()
+        function fn(a,b){}  //可以在定义的上面和下面调用
+        fn(1,2)
+
+        fn() //报错
+        var fn = function(){} //只能在定义之后调用
+        fn() //正常运行
+
+        实参能放所有的数据类型
+
+        function fn(a,c){
+            c && c(a);
+        }
+        fn(1,function(d){
+            console.log(d);
+        })
+
+        fn({
+            obj:img,
+            attrs:{
+                width:100
+            },
+            callback:function(){
+
+            }
+        })
+
+    
+
+        // function fn(a,c){
+        //     c && c(a);
+        // }
+        // fn(1,function(d){
+        //     console.log(d);
+        // });
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------第三次听写-------------------------------
+    
+        1.咱们学的数学方法有哪些？
+
+        Math.round()  四舍五入
+
+        Math.abs()   绝对值
+
+        Math.max   最大 
+        Math.min   最小
+
+        Math.random()  随机0-1之间的无限不循环小数
+
+        Math.ceil() 向上取整
+
+        Math.floor() 向下取整
+
+        Math.sqrt()  开方
+
+        Math.PI()  π
+
+        Math.pow() 幂
+
+        new Number.toFixed(2)  字符串
+
+        new Number.toString(2) 转进制
+
+    
+    // console.dir(Math);
+    // console.log(Math.sqrt(9));3的平方
+    //   console.log(Math.pow(7,2));  //49  7*7
+
+    
+        2.默写字符串的方法，各代表什么意思？
+
+        1.charAt()  找到指定位置的字符,默认为0
+
+        2.charCodeAt() 指定位置的字符串转成unicode值
+
+        3.String.fromCharCode  把unicode转字符
+
+
+        一:截取类
+
+        4.slice(起始位置,结束位置但不包含结束位置); 返回值为截取的字符
+
+        5.substring(起始位置,结束位置但不包含结束位置)
+
+        6.substr(起始位置,截取几个)
+
+
+    二:查询类
+
+        7.indexOf(查找的字符,起始的位置) 从前往后找，找到指定字符的位置，没找到-1
+
+        8.lastIndexOf(查找的字符,起始的位置) 从后往前找，找到指定字符的位置，没找到-1
+
+        9.startsWith(查找的字符,起始的位置);字符串中起始位置包不包含指定字符 布尔值
+
+        10.endsWith(查找的字符,起始的位置);字符串中结束位置包不包含指定字符 布尔值
+
+        11.includes(查找的字符) 字符串中包不包含指定字符 布尔值
+
+
+        三:补全
+            padStart(长度,'内容')
+                向前补全，如果字符串的长度不够设置（第一个参数）的长度，补全第二个参数中的内容
+
+            padEnd(长度,'内容')
+                向后补全，如果字符串的长度不够设置（第一个参数）的长度，补全第二个参数中的内容
+
+            repeat(num)
+                重复多少次
+        
+        
+        四.去掉前后空格
+            trim()
+
+        五.字母转换
+            大写转小写:
+                toLowerCase()
+
+            小写转大写:
+                toUpperCase()
+
+        六.切割
+            split('') 以参数中的内容为分割符，存到数组中
+                字符串转数组
+
+        七.拼接
+        ``  'a'+ num +'b'
+            模板字符串
+
+    
+
+        //let str = 'miaov';
+
+        // console.log(str.startsWith('a',2));
+
+        //console.log(str.padStart(9,'机构名:'));
+
+    
+        3.默写数组的方法，各代表什么意思？
+
+        一.截取类ss
+            slice() 跟字符串的一样
+            splice(起始位置,截取几个)  返回值也有截取的功能
+
+        二.增删类
+            push() 往数组的末位添加数据，返回值新数组的长度
+
+            pop() 删除末位，返回值删除的那个
+
+            unshift() 往数组的首位添加数据，返回值新数组的长度
+
+            shift() 删除首位，返回值删除的那个
+
+            splice()
+                第二个参数为0就添加
+                如果第二个参数不为0,第三个参数又写了，使用替换功能
+
+        三.ES5类
+            forEach(callback(e,i,all),this); 数组循环
+
+            every(callback(e,i,all)) ; 查看数组中是否都符合回调函数的条件，返回布尔值
+
+            some(callback(e,i,all));查看数组中是否有一个条件是符合回调函数的条件，返回布尔值
+
+            map(callback(e,i,all)); 返回新数组
+
+            filter(callback(e,i,all));过滤掉回调函数中条件不符合的（条件符合就留下）
+
+        四.查询类
+            indexOf
+            includes
+
+        五.ES6类
+            find(callbcak(e,i,all)) 找到回调函数条件成立的数据
+            findIndex(callbcak(e,i,all))找到回调函数条件成立的下标
+            Array.from()  把类数组转数组
+            Array.isArray() 是不是数组  返回布尔值
+
+        六.拼接类
+            join() 以参数中的字符为链接符，链接数组并且转成字符串
+            concat() 链接一个或多个数组，返回一个拼接后的新的数组
+
+        七.翻转
+            arr.reverse()
+
+        八.排序
+            arr.sort(function(a,b){})  a-b 小到大，b-a大到小
+
+    
+
+        let arr = [1,2,3,4];
+        console.log(arr.find(function(e,i){
+            return i == 3;
+        }))
+        console.log(arr.splice(1,2));
+
+    
+        4.对象的方法
+
+            JSON.parse()  JSON转对象  JSON中的为字符串都不会报错
+
+            JSON.stringify()  对象转JSON  undefined 函数转不了
+
+            eval
+    
+
+        // let obj = '{"a":"undefined","fn":"function(){}","c":123}';
+
+        // console.log(JSON.stringify(obj))
+        //console.log(JSON.parse(obj))
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------第四次听写-------------------------------
+    
+            1.什么是git，什么是github
+
+            git版本控制工具
+            github程序员的基友网站、代码托管、远程仓库
+        
+
+        
+            2.如何才能版本控制？
+
+            .git文件 -> 到远程仓库创建一个项目 -> git clone下载到本地
+
+            git add . || git add 文件名
+
+            git commit -m "注释"
+
+            git push origin master
+
+    
+        
+            3.如何回滚指定版本？
+
+            git reset --hard 指定的版本
+        
+
+        
+            4.当提交代码的时候如果遇到了冲突你是如何解决的？
+
+            1.git fetch  把远程仓库的代码拉取下来（git pull）
+
+            2.git diff master origin/master  查看冲突
+
+            3.git merge origin/master  合并代码
+
+            4.git commit -a -m "注释"
+
+            5.git push origin master
+
+        
+
+        
+            5.什么是DOM？
+
+            document object model  文档对象模型
+
+            通过document提供的api赋予开发者操作页面的能力
+
+        
+
+        
+            
+            6.常用的节点类型有哪些？各代表数字几？用什么属性去查？
+
+            document        9
+
+            element         1    
+
+            text            3
+
+            注释             8
+
+            attributes      2
+
+            element.nodeType
+
+            nodeName || tagName
+
+            nodeValue
+
+        
+
+        
+            7.增删改查属性如何操作
+
+            setAttribute('key','value') 增加属性
+
+            removeAttribute('key') 删除属性
+
+            getAttribute('key') 查属性
+
+            el.dataset.index
+
+            box.index = 2;
+
+            console.log(box.index); //用.的方式去设置得用.的方式去获取
+
+            //如果通过getAttribute去获取行间的属性,获取不到就为null 
+            .的方式获取不到就为undefined
+            console.log(box.getAttribute('index'));
+
+        
+
+        
+            8.父节点、子节点、上、下一个兄弟节点各是什么？
+
+            parentNode
+
+            childNodes 在高版本浏览器下所有的子节点
+
+            children 元素节点
+
+            previousElementSibling
+            nextElementSibling
+        
+
+        // console.log(box.childNodes.length);
+        
+            
+            9.DOM的添加、删除、克隆、替换的方法有哪些？
+
+            document.createElement('标签名');可以自定义标签
+
+            document.appendChild();  后添加
+
+            parent.insertBefore(new,添加到它的位置前)
+
+                如果第二个参数为空，那么默认往最后一个添加
+
+            parent.removeChild(子节点)
+
+            子节点.remove();
+
+            element.cloneNode(true)
+
+            parent.replaceChild(new,old)
+
+
+        
+
+        // document.body.appendChild(document.createElement('自定义'))
+        
+
+        
+            
+            10.获取元素的宽度（带边框，不带边框，内容撑开的）
+
+            offsetWidth
+            clientWidth
+            scrollWidth
+        
+
+        
+            11.计算距离上下左右
+
+            offsetLeft
+            offsetTop
+
+            getBoudingClientRect() = {
+                let :
+                right:
+                bottom:
+                top:
+                width:
+                ....
+            }
+        
+        
+        
+        
+        
+        */
+
+    
+    
+    
+    
+    </script>
+
+
+</body>
+</html>

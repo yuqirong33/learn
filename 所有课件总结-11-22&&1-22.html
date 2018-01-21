@@ -1,0 +1,3112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    /*
+
+
+
+
+        parent.createElement		创建标签
+
+        toggle
+
+        for in 的使用
+
+        类数组问题
+
+        +new Date
+
+        箭头函数this指向父级
+
+        delete				删除这个数据
+
+        map
+
+        while				的优势在当循环的次数不定的（不可预估的时候）使用起来更加方便   
+
+        getElementsByTagName		就算页面中只有一个标签，如果要使用，也必须加下标要么在获取元素的时候加，要么在使用的时候加,个人建议在获取的时候加
+
+        continue  跳过  break  跳出  不在循环了   循环才能用      function不能用,function只能用return
+
+        while(条件){}
+                    使用continue有问题的，跳过之后，不会执行后面的代码了。
+
+        num += arr[i]     如果要垒加的话用+=
+
+        %=
+        
+        深拷贝，浅拷贝问题不理解
+	
+
+
+
+
+
+    知识点数据类型
+        
+        ECMAScript 的数据类型
+            string,number,object,
+            undefined{
+                声明变量没有赋值,
+                当对象没有这个属性的时候（简单类型身上没有这个属性时）,
+                当找不到数组中的值时,
+                函数默认返回值
+                
+            },
+            null{
+                找不到元素的时候,
+                script放在元素的上面的时候并且没有加window.onload
+                let n = null
+            },
+            布尔值:
+                true\false
+            symbol:
+                唯一
+        typeof:
+            string,number,object,undefined,boolean,symbol,function
+                
+        非空对象下可以加属性和方法:{
+            除了null的对象：
+                {},[],function
+            }
+
+
+
+
+	强制类型转换：
+        1.字符串转数字
+            Number();
+            number转空字符串为0
+        如果Number转不出来，比如：'20px'；那么同样会给个结果NaN
+
+            parseInt(字符串,第一个参数的进制数)
+                比number多了一个取整功能
+                开头必须为数字，不然转NaN
+                如果开头为0或空格，那么会舍弃0或空格
+                如果开头为数字中间不为数字了，那么就会把开头的数字转成数字返回。
+                如果添加第二个参数：
+                    将第一个参数转成十进制
+
+            parseFloat(字符串)
+                相比parseInt可以转小数，不过没有第二个参数
+
+        NaN -> 非法的数学运算
+
+
+
+	NaN -> 非法的数学运算
+
+        除了NaN，所有的数据自己都等于自己
+
+        检测是否为NaN：
+            isNaN:
+                true，false
+            如果是NaN就是true，否则false
+
+
+
+
+	=赋值
+
+        ==：
+            先左边后右边
+            会将两边的数据类型统一，然后再比较
+            不用关系数据类型是否相同，直接比较
+
+        ===（全等）:
+            不会去转换两边的数据类型，如果数据类型都不相等直接false
+
+        > 、 < 、>= 、 <= 、
+        !:
+            非，否，取反，默认强行转成布尔值
+        !=：
+            不等
+        !==
+            不全等
+
+        从性能上来说，== 没有全等的性能高，因为全等不用转左右两边的数据类型。
+
+
+
+
+	&& 与（谁1与谁2）
+            
+
+        布尔值 && 布尔值
+            谁1成立 还会去看后面 谁2
+            如果谁1成立，谁2不成立，返回谁2
+            如果谁1不成立,直接返回谁1
+
+        
+
+        || 或
+
+            布尔值 || 布尔值
+
+            谁1 || 谁2
+
+            如果谁1成立就不会看谁2了，返回谁1
+            如果谁1不成立，还会看谁2，返回谁2
+
+
+
+	三元运算符（三目运算符）：
+            ? :
+            非它即它
+            let a = 0 < 1 ? '呵呵' : '嘻嘻';
+        
+        二元运算符:
+           a + b
+
+        一元运算符:
+            typeof a
+
+
+	switch(变量){
+            case 是1 :
+                执行想要的效果;
+            break;
+            case 是2 :
+                执行想要的效果2;
+            break;
+            default:
+                执行都不是的效果
+            break;
+        }
+
+        default: 默认的条件 类似于 else
+
+        注意：
+            如果不加break那么会穿透,不但某个条件成立会执行，还会执行下面的代码。
+
+	string,number,boolean,object,undefined,null,symbol,function
+
+
+        真:非空字符串，非0的数字,true,对象,Symbol,function
+
+        假:空字符串,0,false,null,undefined,NaN
+
+
+
+    
+
+    函数
+
+
+        函数声明：
+                function fn(){}
+                    调用在定义上面或者下面都可以。
+            函数表达式：
+                let fn = function(){}
+                    调用在声明之后，不然会报错
+
+            在函数才被声明的时候，函数内部就有很多属性或者方法
+            比如:
+                name属性,length属性,arguments属性
+                prototype属性->原型->是给它的实例化对象使用的->它的值是一个**对象**
+                Scopes属性
+                apply方法
+                bind方法
+                call方法
+
+
+        函数名 + 括号调用
+            事件调用
+            call能够改变this指针（this指向）
+            applay能够改变this指针（this指向）
+            
+            
+            bind也能改变this指向，不过bind之后不立即执行，如果要执行就得执行它的返回值。
+
+
+
+
+	函数传参:
+            形参:
+                形参 -> 形式上的参数
+                是可变的-> 直接理解为变量 var,let
+                形参是可以定义初始值的
+                    function(a=1,b=[]){}
+                    a默认值为1
+                    b默认值为一个空白数组
+                如果没有初始值，就为undefined
+                
+            实参:
+                实实在在的参数
+                *** 实参的个数一定要对应形参的个数
+                function fn(a=1,b=[]){}
+                fn(5,6)
+
+                *** 实参可以传入任何数据
+
+
+	**函数**返回值：（**函数**的返回值，return只能在函数内使用）
+            return
+        函数的默认返回值为undefined
+
+        函数返回值的目的：
+            因为函数是一个域，在域中的变量或者运算结果，在外部是访问不到的（js的特性）
+            如果想让外部也能够访问到函数内部的变量或者运算结果，这个时候就用return
+
+            函数名 + () 的返回值就等于 return后面的结果
+            如果没有return默认返回值为undefined
+
+        什么时候用return?
+            1.外部想访问内部的变量或者运算结果。
+            2.在函数内部终止后面的代码执行。
+
+
+
+
+   
+        写个函数，返回一个布尔值，
+        某个数组中是否包含 2
+    
+
+    let arr = [1,2,3,34,5,6];
+    let arr2 = [1,3,34,5,6];
+
+   
+        如果不初始一个默认值，那么a会为undefined
+        undefined是没有length的，所以会报错。
+
+        而初始了一个[],至少有length，length=0
+    
+    function fn(a=[]){
+        for(var i=0;i<a.length;i++){
+            if(a[i] === 2){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+	实参和形参是可以重名的，但是个人建议在初期还是不要重名
+        这个更好去理解，形参和实参
+
+
+
+   
+        因为 Infinity-1<Infinity 为false,所以不会走并且，
+
+        但是后面还有个||那么就会走最后的值。（5 > 2）;
+   
+    let a = 1*'2' && 2/'2px' || Infinity-1<Infinity && !!true && !!!!0 || 5>2;
+
+
+
+    
+    
+    
+    
+    
+    作用域问题：
+
+    
+	作用域:  执行js的范围。
+            域:范围（{},function）
+            作用:执行js
+
+        1.js的一种特性,子级能够访问父级的参数或者变量，如果父级还是没有（形参也没有）
+        那么会去父级的父级去中找，如果到了全局还是没有，那么就报错。
+        
+        2.子级先会去父级的函数体内找某个变量，如果没有那么还会去父级的形参中查找
+          如果父级的形参中有，直接走形参。
+
+        3.如果自身有这个变量会优先自身的变量(访问变量的时候应该在声明之后访问（let）)
+
+
+        4.在使用var的时候会进行预解析，如果在声明之前打印这个值
+        那么会是一个undefined
+        本质：
+            var 声明的时候会在window下注册一个变量的属性(在全局的情况下会挂在window上，如果在函数内是不会挂在window上的)，赋值为undefined
+            let 声明（在全局下）的时候不会在window下注册这个变量
+
+            let声明的上面有暂存死区（不会预解析）
+            如果在一个域中声明，那么去声明之前找这个变量是不会走作用域链的(就报错)。 
+
+        5.函数内有var声明的变量，参数也有一个和var声明变量一样的名字的形参
+          在函数一开始访问这个变量，那么会看参数是否有值，如果没有值直接undefined，
+          如果传入实参或者形参中有默认值，那么直接输出形参值。
+
+        能够不段有规则的去查找变量，这种规则就是作用域链。
+
+	
+
+	js预解析机制:
+            在打开页面的时候会提前执行的js顺序，这种规则叫预解析器。
+        
+        1.js从上往下执行。
+        2.碰到var 碰到 function就会提前解析
+        3.解析之后逐行解读代码。
+	
+	如果2个函数的名字一样，那么后面的会把前面的覆盖。等同于第一个函数就从世界上消失了。
+	如果一段js代码中既有函数也有var（同名的），那么直接走最后一个同名函数
+
+        逐行解读代码的时候，有=号就赋值，没有等号就过。
+
+        ***注意:
+            就算var后面是个函数，也不算函数，只算变量。
+
+
+	
+        // var fn = undefined
+        // var fn = undefined
+        var fn = function fn(a){
+            alert(fn);
+            function fn2(a){
+                alert(b);
+                var b = 50;
+                function b(){
+                    alert(5);
+                }
+                b();
+            }
+            var a = 30;
+            alert(fn);
+        }
+
+    
+    
+    alert(fn);
+    // var fn = function(){
+    //     alert(5);
+    // }
+    alert(fn);
+    // var fn = 80; 
+    function fn(a){
+       
+            var fn2 = 代码块
+            var a = undefined
+       
+        alert(fn); //代码块
+        function fn2(a){
+           
+                // var b = undefined;
+                var b = function(){}
+                
+          
+            alert(b); 
+            // var b = 50;  //b = 50
+            function b(a){
+                alert(5);
+            }
+            b(b); //报错。
+        }
+        fn2();
+        var a = 30;
+        alert(fn); //大的代码块
+    }
+    fn(10);
+
+
+	如果有多个script标签，那么只会向上去找某个变量（函数）
+        如果没有就报错，如果有访问成功，不过就算一个script报错
+        是不会影响别的script执行的。
+
+
+
+
+
+
+
+
+
+
+   
+   
+    闭包
+	
+    
+    闭包是个啥？
+            一个函数就是一个闭包。
+        
+        应用范围:
+            父级的参数或者变量不被浏览器的垃圾回收机制回收。
+
+        闭包:
+            真正可以拿来用的闭包:函数套函数，子级能访问父级的参数或者变量，并且引用（使用这个参数或者变量）
+            这个时候，父级的参数或者变量不被垃圾回收机制回收
+
+
+        在函数名 + 括号执行的时候，函数内的参数或者变量会被浏览器垃圾回收机制给回收。
+        下一次再函数名 + 括号,运行完之后又会被回收。
+
+	外面：使用着局部的内容，
+        内部: 子级要使用着父级的参数或者变量
+        这个时候形成闭包环境
+
+	函数自执行:
+
+            (function(){
+
+            })()
+
+        闭包就是一个函数引用另外一个函数的变量，因为变量被引用着所以不会被回收，因此可以用来封装一个私有变量。这是优点也是缺点，不必要的闭包只会徒增内存消耗！另外使用闭包也要注意变量的值是否符合你的要求，因为他就像一个静态私有变量一样。闭包通常会跟很多东西混搭起来，接触多了才能加深理解，这里只是开个头说说基础性的东西。
+
+        内部一直使用着外部的值，那么就一直不被回收。
+
+        缺点:
+            一直不回收，如果数量大了，会影响性能。
+            IE6版本浏览器会出现内存泄露。
+
+
+	函数套函数，子级使用父级的参数或者变量,外部能够访问函数内部的内容
+
+        避免命名冲突:
+            1.封闭空间（打闭包）
+            2.命名空间（添属性）
+
+        var a = 10;
+
+        var b = xxx
+
+
+        闭包:
+            函数就是闭包，但是一般都是去使用闭包的特性，
+            父级的参数或者变量不会被回收
+
+            (函数套函数)子级使用父级的参数或者变量，这个时候子级就形成了闭包环境
+
+            去查看子函数，在子函数下有个属性Scopes:Closure
+
+            (function(){
+                
+            })()  函数自执行
+
+
+
+
+
+
+
+
+
+
+	2.取余的规律
+
+        a > b 取余 a/b余几？
+
+        a < b 取a
+
+        a == b 取0 
+
+
+
+	什么是自定义属性，一般用在哪个地方
+
+        在非空对象下添加一个自定义属性（{},[],function）
+
+        1.有多个对象的情况下，每个对象都有自己的一套属性
+
+        2.行间的属性如果是系统自带的，比如box.id，那么可以直接通过对象.的方式获取
+          如果不是系统自带的，那么为undefined
+        
+        3.添加索引（操作一个东西的时候还要关联另一个东西）
+
+        作为一个标识好去对应。
+
+
+
+
+
+	4.选项卡的定点清除思路
+
+        1）
+            预设一个默认元素
+        2）
+            在触发事件的时候先清掉预设的className
+            再清掉预设元素对应（divs[预设元素.index]）的div的className
+        3）
+            当前触发事件对象的className变为active（btns[this.index].className = 'active'）
+            把当前触发事件对象.索引的div的className设置为show
+        4）
+           *** 把预设的默认元素改变成this，以便下一次使用。
+
+
+
+	举例强制类型转换和隐式类型转换不少于2个
+
+        parseInt
+        parseFloat
+        Number
+
+        + '10'  -> number 10
+
+        '10' + 10 ->  '1010'
+
+        '100'-2 -> number 98
+
+        '100' * 1 -> number 100
+
+
+
+ 	a && b
+            如果a成立还会去看b，结果一定是b
+            如果a不成立，结果a
+            
+
+        a||b 各是什么意思
+
+            如果a成立，就不会去看b了，结果为a
+            如果a不成立，就会去看b，结果是b
+
+
+	8.== === 的区别
+
+        == 不会对比数据类型，而且会转换左右两边的值（双方转成一样的数据类型然后比较）。
+
+        a===b 全等 会去比较数据类型，不会转换左右两边的值。
+
+
+	什么是真什么是假：
+        
+        真:非空对象([],{},fn)、true、非空字符串、非0数字、function、symbol
+
+        假:NaN,null,false,空字符串,undefined,0
+
+
+
+	对象需要特殊的格式情况下才能使用for循环
+        key值为数字并且还得有length属性。
+
+        in 运算符。
+            可以运算对象的key值,查看对象中是否有这个key值
+            返回一个布尔值。
+
+        通过for in是可以拿到对象中所有的key值。
+
+        数组与对象都能够使用for in循环，但是，for in的性能不高。
+        对象{}目前来说只能用for in
+
+
+
+
+
+	arguments 问题: 实参的集合（类数组）
+
+
+
+	call(this,1,2,3,4,5):
+            第一个参数：
+                改变this指向
+            第二个参数之后为实参。
+
+        
+        apply(this,[]):
+            第一个参数：
+                改变this指向
+            第二个参数为数组,里面放着实参
+                [1,2,3,4]
+
+	函数默认的this为window
+            如果使用了call，apply写什么this就是什么。
+
+
+
+
+	把右边的东西赋值给左边  （简单类型）
+
+        复合类型就不是赋值，而是赋址。
+
+        复合类型的等号是**赋址**。
+
+
+
+
+
+
+
+
+
+
+
+
+
+    定时器
+
+	
+    定时器:
+            炸弹、闹钟、进度条、轮播图
+        
+        函数的第3种调用方式:定时器调用
+            1.直接调用
+            2.事件调用
+            3.定时器调用
+
+        间隔型定时器: setInterval (函数,毫秒)  一直炸
+        延迟型定时器: setTimeout  (函数,毫秒) 只炸一次
+
+
+        返回值为数字，每有一个定时器就添加一个数字，只要开定时器这个数字就一直在。
+
+
+	关闭定时器：
+            clearInterval(要关闭的定时器);
+            clearTimeout(要关闭的定时器);
+
+        这2个关闭定时器都可以用。
+
+
+
+	问题：
+            狂点开始按钮的时候，timer会一直赋值新的定时器，
+            好几个定时器开着，页面就乱了
+
+            当关闭定时器的时候，只关闭了最新赋值的定时器。
+            会导致关闭不了定时器。
+
+            解决：
+               1. 点完之后就不让点了。这种性能更高。
+               2. 再这次开启定时器之前，先把之前的定时器清了。
+        
+        
+        timer = 1
+        timer = 2
+
+
+
+	onmouseenter  -> 移入
+  onmouseleave  -> 移出
+
+
+
+
+	使用连续炸（setInterval）的时候，一定要记得把定时器关闭
+
+        *** css的transition和定时器的运动是有冲突的。
+
+
+
+
+	getComputedStyle(obj).width : 计算后的样式。
+
+        *** 返回值是带单位的字符串(带单位就不能直接数学运算)。
+
+        获取CSS3的内容一般获取不准确
+        如果获取transform的时候，获取到的是一个矩阵。
+
+
+
+
+	 *** 如果一个对象中有重名的key值，那么后面的会把前面的覆盖。
+
+
+
+
+	2.var跟let的区别
+
+        1.var声明的时候会在全局（window）下挂一个属性
+            let是不会的
+            var a = 10;
+            console.dir(window);  //window.a 
+
+            let a = 10;
+            console.dir(window);  //window下没有a
+
+
+        2.在一个域下，var同名可以有多个,let只能有一个（函数的参数也不能和函数体内的变量名一样）
+
+            let a = 10;
+            let a = 12;  //报错
+
+            var a = 10;
+            var a = 12; //12
+
+
+        3.在一个域下 var 有预解析，let是没有的（有暂存死区）
+
+            console.log(a); //报错
+            let a = 10;
+            
+            console.log(a); //undefined
+            var a = 10;
+
+            function fn(a){
+                var a = 10;
+                // let a = 10; //报错
+                console.log(a);
+            }
+            fn(10);
+    
+
+        4.let支持块级作用域。
+
+            {
+                // let a = 10;
+                var a = 10;
+            }
+            console.log(a);
+
+
+
+
+	3.call跟apply，bind的区别
+
+        改变this指向,都函数自身的方法。
+
+        call,有多个参数，从第二个起为实参。
+            fn.call(document,1,2);
+
+        apply,就2个参数，第二个参数是数组，数组中放的是实参
+            fn.apply(document,[1,2]);
+
+        bind(this)
+            this绑定之后是不调用的,也可以有多个参数,
+            从第二个参数起，就是实参的各式个数,
+            它的返回值是一个改变this的函数
+
+                let f = fn.bind(document,1,2);
+                f();
+
+            返回值也可以传实参。
+
+
+
+
+ 	4.什么叫函数返回值,
+
+            整个函数名||方法名 + 括号就是返回值并且还会把函数体内的代码执行一遍
+        
+            function fn(a,b){
+                alert(a+b);  
+                console.log(this);
+            }
+            let ff = fn(1,2);  //会执行函数体内的代码
+            console.log(ff); //打印函数返回值
+        
+
+        return 是什么，函数的返回值就是什么，
+
+        return的用法？
+        
+           1.在函数外部想访问到函数内部的运算结果就用return;
+           2.终止return后面的代码执行
+
+
+
+
+
+ 	5.break和return哪有不同
+
+        break: 
+            终止for循环的
+
+        return:
+            终止return后面的
+
+
+
+
+
+	函数声明方式有哪些，什么是形参什么是实参，
+    	实参能传哪些数据类型？
+    
+    	fn()
+    	function fn(a,b){}  //可以在定义的上面和下面调用
+    	fn(1,2)
+
+    	fn() //报错
+    	var fn = function(){} //只能在定义之后调用
+    	fn() //正常运行
+	
+    	实参能放所有的数据类型
+
+
+
+
+
+	7.你是如何理解作用域、作用域链、预解析的？
+
+        作用域：js执行的范围。
+        作用域链:在某个域中去找某个变量，从查找到找到的过程是跟"链"有关系的
+                比如某个域里面没有就会去外面找
+
+        预解析:
+            碰到var和函数的时候会提前解析的过程，就叫预解析
+
+
+
+
+	当在域中给某个变量赋值的时候，
+        如果说参数也是这个名字，那么这个时候
+        会认为，赋值的这个变量是局部的。
+
+
+
+
+
+	8.什么是闭包？为什么要用闭包？
+
+        1.函数套函数，子级引用着父级的参数或者变量，这个时候父级的参数或者变量就不会被回收
+          子级就形成了闭包环境()
+        2.就是想让父级的参数或者变量不被回收才用闭包。
+
+
+
+
+	9.延迟定时器和间隔型定时器是什么？如何关闭？
+
+        setTimeout   clearTimeout
+        setInterval  clearInterval
+
+
+
+
+
+
+	10.从进门到座位上用了多少时间怎么计算？
+
+        进门的时候有个时间
+
+        走在路上的时候也有个时间
+
+        用走的时间 - 进门的时间 = 用了多少时间
+    
+
+    // document.documentElement  html
+
+    //4785 4685
+
+    // document.documentElement.onclick = function(){
+    //     var date = new Date();
+    //     for(var i=0;i<500;i++){
+    //         ul.innerHTML += '<li>'+i+'</li>';
+    //     }
+    //     var date2 = new Date();
+    //     console.log(date2 - date);
+    // }
+
+
+
+
+
+
+	11.什么是赋值，什么是赋址？
+
+        简单类型的赋值就是赋值
+        复合类型的赋值是赋址
+
+     注意：
+         函数如果有参数，在函数体内赋值了，那么不是赋址
+        var obj = {name:'小明'};
+        function fn(o){
+            o = {age:18};
+        }
+        fn(obj);
+        console.log(obj); //{name:'小明'}
+    
+
+    // var obj = {name:'小明'};
+    // function fn(){
+    //     obj = {age:18};
+    // }
+    // fn(obj);
+    // console.log(obj); //{age:18}
+
+
+
+
+	12.如何将一个对象内容拷贝给另一个对象（2种方法）？
+
+
+        for(var attr in obj){
+            obj2[attr] = obj[attr];
+        }
+
+        Object.assign(obj2,obj);
+
+
+
+
+
+
+
+
+
+
+
+
+    数学、字符串、数组方法
+
+
+        
+	js提供了Math对象下的多个数学方法
+
+        Math.ceil()  向上取整
+
+        Math.floor()  向下取整
+
+        Matrh.abs()  取绝对值。
+
+        Math.max();  最大
+        Math.min();  最小
+
+        找到数组中最大的值：
+            Math.max.apply(null,arr);
+
+        new Number(3.14).toFixed(num);  num为几就保留几位。
+
+        3.141596.toFixed(2)  保留2位小数 ->返回值是个string
+
+
+
+
+
+ 	Math.random();
+            随机 0 - 1之间的无限不循环小数
+
+        常用的取整公式
+			x ~ y : Math.round(Math.random()*(y-x) + x)
+			0 ~ x : Math.round(Math.random()*x)
+			1 ~ x : Math.ceil(Math.random()*x)||1
+			0 ~ x-1 : Math.floor(Math.random()*x) 
+
+
+
+
+	Math.round(number);  返回是number
+            四舍五入
+
+
+
+
+
+
+	字符串：
+            '' | ""
+            new String
+
+        字符串拼接  
+            学会咔咔加加
+
+        字符串的操作方法
+        字符串的转换（如:隐式类型）
+        逻辑思维
+        算法
+
+        length:
+            只可读不可写的。
+        
+        动态方法
+        string.charAt(索引):主要为兼容IE7以下浏览器的跟str[0]一样。 
+
+        默认为0
+
+        字符串指定位置的字符
+
+
+
+
+	string.charCodeAt(index);
+            可以把指定的字符转成unicode编码值。
+
+        第一种写法:
+            'm'.charCodeAt();  109
+        第二种写法:
+            'miaov'.charCodeAt(0)  109
+            'miaov'.charCodeAt(1)  105
+
+
+
+
+
+	String.fromCharCode()  静态方法
+
+        账号:miaov
+        密码:1101011,1110100
+
+        number.toString(进制数) -> 把number转成指定的进制数
+
+
+
+
+	lastIndexOf('查找的字符',起始位置)
+            从右往左找，指定字符的下标
+
+        1.html.txt
+        2.txt.html
+
+        找到文件的后缀名是什么？
+
+
+
+
+
+	substring(起始位置,结束位置但不包括结束位置)：
+            截取指定位置的字符串的。
+
+            细节:
+                如果第一个参数比第二个参数的值要大，那么会颠倒顺序
+                如果参数为负数看成0即可。
+
+
+
+
+	1.从str这个字符串中找到所有n的下标
+            (1)循环
+            (2)判断到底有没有n
+            (3)每次找到还得改变某个变量
+
+        2.存到数组中
+        3.lastIndexOf
+        4.再过滤数组中最大的值
+        5.通过这个最大值去查找最后一个n的下一个字符是什么
+
+
+
+
+	1.从str这个字符串中找到所有n的下标
+            (1)循环
+            (2)判断到底有没有n
+            (3)每次找到还得改变某个变量
+
+        2.存到数组中
+        3.lastIndexOf
+        4.再过滤数组中最大的值
+        5.通过这个最大值去查找最后一个n的下一个字符是什么
+
+
+
+
+	string.substr(从多少开始,截取几个)
+
+
+
+
+
+	string.split('-');
+            以某些字符为依据，把字符串分割出来，放到数组中
+            返回值是数组。
+
+        如果用字符串作为分隔符，那么会返回一个双字符串的数组 ['','']
+
+        只有空字符串分割空字符串才会是个空白数组 []
+
+        一般会和数组的join()合用。
+
+        如果用空字符串为分割符，那么会把字符串的每项分割出来放到数组中。
+
+        str = 'miaov'
+        str.split('')  -> ['m','i','a','o','v'];
+
+
+        /////////////////////////////////////////////////////
+        
+        array.join('')
+            以字符为链接符，链接数组的每项，并且转成字符串。
+
+        一般会和字符串的split合用。
+
+
+
+
+
+	string.indexOf(指定字符,起始的位置);
+            从左往右  找到指定位置的下标(返回值)
+
+        *** 如果找不到就返回 -1
+
+            如果说某个字符串中有这个值，那么就可以这些写
+                if(string.indexOf('') != -1){}
+
+        设置本身的位置只能找到本身。如果要往后找，那么要在本身后 + num
+
+        例子:
+            找到下面所有i出现的位置，并且存到数组中,再通过
+            这个数组中找到最大的值对应的字符,
+            找到之后再再找它的下一个字符是什么。
+
+            1.循环
+            2.字符串中还有指定的字符才循环
+            3.push i
+            4.设置起始的位置。
+
+            for(){}
+            while(){}
+
+
+
+
+
+	截取字符串:
+            slice
+        
+            如果只传一个参数
+                从第几位开始截取直到整个字符串截完。
+                如：
+                    str.slice(1)  -> iaov
+            
+            如果传了2个参数：
+                第一个参数：
+                    开始位置
+                第二个参数:
+                    1.记法：
+                        结束位置，但不包含结束位置
+
+                    2.记法:
+                        结束位置 - 起始位置走几个
+
+
+
+
+
+	substr
+        substring
+        slice
+
+        indexOf
+        lastIndexOf
+
+        charAt
+        charCodeAt
+        fromCharCodeAt
+
+        string.split()
+        array.join()
+
+
+
+
+	string.toLowerCase()
+            返回的是字符串 -> 把大写字母转成小写字母的字符串
+
+
+	trim :
+            去掉前后空格
+
+
+
+	startsWith(包含的字符串,起始位置):
+            开头有没有包含某个字符
+
+        endsWith(包含的字符串,起始位置但不包含起始位置)
+            是不是以指定字符结尾的
+
+        includes(包含的字符串,起始位置)
+
+        返回的都是布尔值。包含就true，不包含就false
+
+
+
+	str.padStart(补齐的长度（num）,'补全的内容')
+            往前补全
+  str.padEnd(补齐的长度（num）,'补全的内容')
+            往后补全
+
+        num < str.length 就不用补全了
+
+
+
+
+	实现一个trim方法，兼容所有浏览器
+
+        '   miao v   '
+
+        'miao v   '
+
+        'miao v'
+
+        endswith()
+
+
+
+	Array：
+            简写: []
+            标准:new Array
+
+        length:
+            可读可写
+
+            清空数组:
+                arr.length = 0;
+
+        通过下标去获取数组中的每个值。
+        可以使用for in循环  
+        数组为对象类型，里面可以放所有的数据类型。
+
+        一般数组的方法是直接操作数组本身，而字符串一般是不会操作
+        本身的，一般需要使用返回值（赋值返回值）。
+
+
+
+	push:
+            向数组的末位添加一个或多个数据。
+
+        返回值为新数组的长度。
+
+
+	pop(没有参数);
+            从末位删除1个数据
+            
+            返回值:为删除的那个数据
+
+        注意：
+            添加多个参数也是删除最后一个
+
+
+
+	shift
+            往数组首位删除1个
+
+            返回:删除的那个数据
+
+        unshift
+            往数组首位添加1个或者多个
+            
+            返回:新数组的长度
+
+        
+        push
+        pop
+        shift
+        unshift
+
+        padStart    补全
+        padEnd    
+
+        xx.repeat(3)  重复
+
+        包含
+            startsWith
+            endsWith
+            includes
+
+        array.splice();
+
+            参数：
+                第一个
+                    参数起始位置
+                第二个
+                    参数如果写非0的正数字，那么为删除,
+                    数字是几就删除几个,返回值为删除的内容（数组）
+
+                    如果为0,说明一个都不删，返回空白数组
+
+                第三个或三个之后的参数:
+                    添加的数据
+
+
+
+
+	使用splice把下面的数组变成周一到周日
+
+
+
+	slice(起始位置,结束位置但不包含结束位置):
+            数组的截取方法，返回值为截取之后的*新*数组
+
+        slice是**不会直接改变原数组**的。
+
+
+
+
+	array.forEach()  数组的循环  ES5的方法
+
+            有2个参数: 
+                第一个参数：
+                    回调函数
+                        回调函数中还有3个参数
+                            1.循环中的每一个  arr[i]
+                            2.循环中每一个的索引（下标）i
+                            3.整个数组 arr
+                第二个参数:
+                    改变this指向(写啥this就是啥)
+                        默认this为window
+
+            没有break也没有continue
+
+            如果要有continue那么可以使用return，但是类似break的东西就没有了
+
+
+
+
+	lis为类数组（类似于数组）
+            类数组有length，有下标，但是不能使用数组的方法
+
+
+
+
+	arr.sort(可以接收一个回调函数)  排序
+            默认是从小到大排列
+
+            默认的排序方式是依据字符串比较的方式来排列的。
+
+        返回一个排序好的数组
+
+        回调函数中**必须返回一个number**类型出去
+
+        a - b   为正数  就调换位置
+
+        a - b   为负数  就不掉换位置
+
+        a - b = 0  [5,5]  可换可不换
+
+
+
+
+
+	array.concat(可以有多个参数):
+            链接数组的方法
+
+        返回一个新的数组
+
+
+
+	reverse:
+            翻转数组
+
+        面试题:
+            voaim  -> miaov
+
+
+
+	every() 
+            方法测试数组的**所有**元素是否都通过了指定函数的测试。
+
+            布尔值
+
+
+
+	some：
+            测试数组中的某些元素是否通过由提供的函数实现的测试
+            布尔值
+
+
+
+	//查看数组中每个是不是都是统一的值，如果是返回true,否则false
+        arr.every(function(e,i,all){
+
+        })
+
+        arr.some(function(e,i,all){
+            //查看数组中有没有设置好的值，如果有就返回true，没有就返回false
+        })
+
+
+	arr.includes()
+            查看数组中是否包含某个数据。
+
+
+
+	Array.from([]|类数组)
+
+            返回一个数组
+
+        功能一样 
+            [].slice.call(类数组)
+
+
+
+	查看数组中的name有没有裤子，有裤子就把这条数据取出来
+
+        find()
+            在数组中返回条件成立的数据。
+
+	
+	findIndex
+            在数组中找到条件成立数据的下标
+
+
+
+
+	map(callback);
+
+            返回一个新的数组
+
+
+
+	非常好用
+        arr.filter(callback) 
+            过滤
+
+
+
+	splice(0,1,'xxx')
+
+        slice(起始,结束)
+        
+        forEach(callback(e,i,all),this)
+
+        sort(callback(a,b))
+            a-b  小到大
+            b-a  大到小
+
+        [1,2].concat(3) -> [1,2,3]
+        
+        reverse 翻转
+
+        every -> 看看是否都满足某个条件 满足就true
+
+        some -> 只要有一个符合条件就返回true,否则false
+
+        includes 包含
+
+        from把类数组转数组
+
+        find(function(e,i){})
+
+        findIndex(function(e,i){})
+
+        map(function(e,i){});
+
+        filter(function(){}); 过滤
+
+
+
+
+	forEach
+
+        some:
+            在回调函数中判断数组的某些条件是否成立，
+            只要有一个成立就返回true，否则返回false
+
+        slice变数组
+
+        兼容性（未来说）
+
+
+
+
+	对象
+            {}
+            []
+
+                标准写法  {"name":"小青"}
+
+                js {'name':'小青'}
+
+        
+
+        json ->  '{}' '[]'
+
+                '{"name":"小青"}' 
+
+        json 转 对象  
+            JSON.parse();
+        
+        注意:
+            json必须要是标准格式的,如果不是标准格式就会报错。
+
+        对象 转 json
+            JSON.stringify();
+
+            注意:
+                stringify不能转函数和undefined的
+
+        只要尝试去alert，会默认调用该数据的toString方法
+
+
+        JSON.parse
+        JSON.stringify
+        低版本浏览器都用不了
+
+        下载一个json2.js的文件就能使用了。
+
+
+
+	只要尝试去alert，会默认调用该数据的toString方法
+
+        toString -> 转成string
+
+        所有的数据自身都有toString方法
+
+        toString可以转除了10进制的进制数
+            变量.toString()
+
+            不能用  数字.toString() 会报错的。
+
+        object   ->  [object Object]  第二个Object是当前数据的内置对象为Object
+
+        arr -> 1,2,3
+
+
+	eval();  容易被注入病毒。
+
+            尽可能把能够执行的js代码执行，把字符串转js
+
+            一般使用的场景:
+                1.把一个不标准的json转成对象
+                2.低版本浏览器用不了JSON.parse,JSON.stringify
+
+
+
+	因为对象的赋值为赋址，而简单类型的赋值就是赋值
+
+        如果直接为对象类型的赋值，改变b就会影响a
+
+        但是我们又知道，赋值的目的是让b中有a的内容
+
+        如果能拿到a的内容而 **内容又是简单类型**，这个时候
+        赋值内容就不会是赋址了，而是赋值。
+
+
+
+	1.咱们学的数学方法有哪些？
+
+    Math.round()  四舍五入
+
+    Math.abs()   绝对值
+
+    Math.max   最大 
+    Math.min   最小
+
+    Math.random()  随机0-1之间的无限不循环小数
+
+    Math.ceil() 向上取整
+
+    Math.floor() 向下取整
+
+    Math.sqrt()  开方
+
+    Math.PI()  π
+
+    Math.pow() 幂
+
+    new Number.toFixed(2)  字符串
+
+    new Number.toString(2) 转进制
+
+
+
+2.默写字符串的方法，各代表什么意思？
+
+    1.charAt()  找到指定位置的字符,默认为0
+
+    2.charCodeAt() 指定位置的字符串转成unicode值
+
+    3.String.fromCharCode  把unicode转字符
+
+
+    一:截取类
+
+    4.slice(起始位置,结束位置但不包含结束位置); 返回值为截取的字符
+
+    5.substring(起始位置,结束位置但不包含结束位置)
+
+    6.substr(起始位置,截取几个)
+
+
+   二:查询类
+
+    7.indexOf(查找的字符,起始的位置) 从前往后找，找到指定字符的位置，没找到-1
+
+    8.lastIndexOf(查找的字符,起始的位置) 从后往前找，找到指定字符的位置，没找到-1
+
+    9.startsWith(查找的字符,起始的位置);字符串中起始位置包不包含指定字符 布尔值
+
+    10.endsWith(查找的字符,起始的位置);字符串中结束位置包不包含指定字符 布尔值
+
+    11.includes(查找的字符) 字符串中包不包含指定字符 布尔值
+
+
+    三:补全
+        padStart(长度,'内容')
+            向前补全，如果字符串的长度不够设置（第一个参数）的长度，补全第二个参数中的内容
+
+        padEnd(长度,'内容')
+            向后补全，如果字符串的长度不够设置（第一个参数）的长度，补全第二个参数中的内容
+
+        repeat(num)
+            重复多少次
+    
+    
+    四.去掉前后空格
+        trim()
+
+    五.字母转换
+        大写转小写:
+            toLowerCase()
+
+        小写转大写:
+            toUpperCase()
+
+    六.切割
+        split('') 以参数中的内容为分割符，存到数组中
+            字符串转数组
+
+    七.拼接
+    ``  'a'+ num +'b'
+        模板字符串
+
+
+
+
+	3.默写数组的方法，各代表什么意思？
+
+    一.截取类ss
+        slice() 跟字符串的一样
+        splice(起始位置,截取几个)  返回值也有截取的功能
+
+    二.增删类
+        push() 往数组的末位添加数据，返回值新数组的长度
+
+        pop() 删除末位，返回值删除的那个
+
+        unshift() 往数组的首位添加数据，返回值新数组的长度
+
+        shift() 删除首位，返回值删除的那个
+
+        splice()
+            第二个参数为0就添加
+            如果第二个参数不为0,第三个参数又写了，使用替换功能
+
+    三.ES5类
+        forEach(callback(e,i,all),this); 数组循环
+
+        every(callback(e,i,all)) ; 查看数组中是否都符合回调函数的条件，返回布尔值
+
+        some(callback(e,i,all));查看数组中是否有一个条件是符合回调函数的条件，返回布尔值
+
+        map(callback(e,i,all)); 返回新数组
+
+        filter(callback(e,i,all));过滤掉回调函数中条件不符合的（条件符合就留下）
+
+    四.查询类
+        indexOf
+        includes
+
+    五.ES6类
+        find(callbcak(e,i,all)) 找到回调函数条件成立的数据
+        findIndex(callbcak(e,i,all))找到回调函数条件成立的下标
+        Array.from()  把类数组转数组
+        Array.isArray() 是不是数组  返回布尔值
+
+    六.拼接类
+        join() 以参数中的字符为链接符，链接数组并且转成字符串
+        concat() 链接一个或多个数组，返回一个拼接后的新的数组
+
+    七.翻转
+        arr.reverse()
+
+    八.排序
+        arr.sort(function(a,b){})  a-b 小到大，b-a大到小
+
+
+    let arr = [1,2,3,4];
+    console.log(arr.find(function(e,i){
+        return i == 3;
+    }))
+    console.log(arr.splice(1,2));
+
+
+    4.对象的方法
+
+        JSON.parse()  JSON转对象  JSON中的为字符串都不会报错
+
+        JSON.stringify()  对象转JSON  undefined 函数转不了
+
+        eval
+
+    // let obj = '{"a":"undefined","fn":"function(){}","c":123}';
+
+    // console.log(JSON.stringify(obj))
+    //console.log(JSON.parse(obj))
+
+
+
+
+
+1.去重思路
+            
+            循环整个数组，每次循环都查看，当前循环的
+            这个数据是否在整个数组中重复出现，出现就删除
+
+            为什么要  j--
+
+                因为splice删除了数组中的某一个之后，修改了数组的长度
+
+                这个时候如果不j--,会跳过1位数据
+
+                [1,2,1,1,3,4,5,6,7,2,3];
+
+                第一次循环 j是1  0+1    i=0
+                    j = i+1  arr[1] 2  1和2不等
+
+                第二次循环 j是2  0+2    i=0
+                    j = i+2  arr[2] 1  1和1相等的
+
+                    条件成立就要把第j位的1删除
+                    [1,2,1,3,4,5,6,7,2,3];
+                
+                 第三次循环 j是3  0+3    i=0
+
+                    j = i+3  arr[3]  3  i=0
+
+                    这个时候会发现刚才的第二位的1被删除之后，
+                    数组的长度已经发生了变化,但是j值依然自增,
+                    这个时候会跳过第二位的1
+
+                解决方案:
+                    j --
+
+                    j = i+2  arr[2]  1
+
+        j = 2  arr[2] 1
+
+        j = 3  arr[3] 3
+            
+    let arr = [1,2,1,1,3,4,5,6,7,2,3];  //[1,2,3,4,5,6,7]
+
+    for(let i=0;i<arr.length;i++){
+        for(let j=i+1;j<arr.length;j++){
+            if(arr[i] == arr[j]){
+                arr.splice(j,1);
+                j--;
+            }
+        }
+    }
+
+    console.log(arr);
+
+
+
+
+
+
+
+
+
+	第一次考试
+	
+        1.B  2.d  3.c 4.ad 5.b 
+        6.a  7.c  8.bd  9.b 10.a
+        11.c 12.d 13.abc 14.aab 15.ac
+        16.a 17.bab 18.b 19.a 20.b
+        21.c 22.10,20  23.b
+
+
+  
+    // var i=0,j=0,k=0,h=0;
+    
+        条件都是跟最后一个走的。
+   
+    
+    // for(;i<10,j<6;i++,j++){
+    //     // console.log(i);
+    //     k = i + j;
+    // }
+
+    // for(;j<6,i<10,h<20;i++,j++,h++){
+    //     console.log(i);  //j:0-19
+    // }
+    // console.log(k);
+
+
+
+        [1,2,3,4] -> '1020304' -> [1,0,2,0,3,0,4]
+
+
+    // k = '';
+    // console.log(k);
+
+    // function fn1(){
+    //     alert(1);
+    // }
+
+    // alert( fn1() );
+
+    // let str = '3djsl';
+    // console.log(str.substring(1));
+
+    
+        Number('')  -> 0
+
+        parseInt(''); -> NaN
+    
+
+    // console.log(typeof (typeof true));
+    
+        var newFn = undefined
+        fn1 = function fn1(){}
+    
+
+    // function fn1(){
+    //     var a = 0;
+    //     function fn2(){
+    //         ++ a;
+    //         alert(a);
+    //     }
+    //     return fn2;
+    // }
+    // fn1()();//1
+
+    // var newFn = fn1();
+    
+    // newFn();//1
+    // newFn();//2
+
+// console.log(window.a);
+// // console.dir(window);
+// var a = 10;
+// console.log(window.a);
+
+
+
+    如果包上window.onload，那么在window.onload中
+    声明变量是不会挂在window身上的。
+
+// window.onload = function(){
+//     var a = 10;
+//     function test(){
+//         
+//             var a = undefined
+//         
+//         a = 100;
+//         alert(a);//100
+//         alert(this.a);//10  
+//         // console.log(this);
+//         var a;
+//         alert(a);//100
+//     }
+//     test();
+// }
+
+
+// (function(){
+
+//     // var a = 5,b = 10;  //->  var a=5;var b=10;
+//     var a = 5;
+//     b = 666;//var a = 5; window.b = 5;
+//     var c = 10;
+// })();
+// alert(b);
+    
+    // function fn(arr){
+    //     alert(arr);//10
+    //     return function(a=15){
+    //         alert(a);//20
+    //     }
+    //     var arr = 5;
+    // }
+    // let f = fn(10);
+    // f(20);
+
+
+    // for(var i=0;i<5;i++){
+    //     setTimeout(function(){
+    //         console.log(i);//5
+    //     },500);
+    // }
+
+
+
+
+	// let arr = [-1,-2,1,10,4,5,8];
+
+    //let mx = -Infinity;
+    // arr.forEach(function(e){
+    //     if(e > mx){
+    //         mx = e;
+    //     }
+    // });
+
+    // arr.sort(function(a,b){
+    //     return a - b;
+    // });
+    // console.log(arr[arr.length-1]);
+
+    // console.log(Math.max.apply(null,arr));
+
+
+    let str = 'miao wei ke tang';
+    console.log( fn(str) );
+    function fn(str){
+        let arr = str.split(' ');
+        let s = '';
+        arr.forEach(function(e,i){
+            if(i > 0){
+                s += e[0].toUpperCase() + e.substring(1);
+            }
+        });
+        // console.log(a);
+       return arr[0] + s;
+    }
+
+    // function fn(str){
+    //     let arr = str.split(' ');
+    //     // console.log(arr)
+    //    return arr[0] + arr[1][0].toUpperCase() + arr[1].substring(1);
+    // }
+
+
+    
+        string:
+            box.value
+        object:
+            {},[],null
+        number:
+            1
+        boolean:
+            1 > 0
+        undefined:
+            var a;
+        function:
+            function(){}
+        symbol:
+            symbol  
+        
+    
+
+    // function fn(){}
+    // console.log(typeof fn);
+
+
+    let str2 = 'ababcabcababcababaabbcabababcaababbda';
+
+    // console.log(str2.split('c').length);
+
+    // console.log((str2.length - str2.split('ab').length)/2);
+    
+    // let num = 0;
+    // let index = [];
+    // while(str2.indexOf('ab',num) != -1){
+    //     index.push( str2.indexOf('ab',num) );
+    //     num = str2.indexOf('ab',num) + 1;
+    // }
+
+    // console.log('出现的位置为'+index,'一共出现了'+index.length+'次');
+
+    
+    let arr = [1,2,3,4,5,6,7,8,9];
+    
+    arr.push(arr.pop(arr.shift()));
+
+    // [2,4,5,12,8,6,7,8,9,[3]]
+
+    arr.splice(3,0,12,arr.push(arr.splice(1,1)));
+    
+     console.log(arr);
+
+
+
+
+	1.闭包
+            函数套函数，子函数能够访问（使用）到父函数的参数或者变量
+            父级的参数或者变量不会被垃圾回收机制给回收。
+                1.函数内的计算结果不会回收
+                2.在循环的时候找索引
+        2.递归
+            自己调用自己(想一件事重复多次去执行)
+
+        3.传参
+            function fn(num){}
+            fn(5,{},function(){},[]);
+        4.钩子
+            callback 当某个条件成立的时候调用的函数
+        5.alert
+            toString()
+        6.json
+            {} []  对象
+            '{}'  '[]'  json 是个字符串
+        7.sort
+            a-b  小到大
+            b-a  大到小
+        8.借方法
+
+        9.const
+            const a;
+        10.预解析
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DOM\BOX\事件阶段
+
+	DOM
+	javascript:
+            ECMAscript
+            DOM
+                Document Object Model(文档对象模型)
+
+                通过document提供的接口，赋予开发者操作页面的能力
+
+                对于结构的关系非常清晰,任意操作它们
+            BOM
+
+            id: document.getElementById('box');
+                document.querySelectorAll()
+
+                box.getElementsByTagName()
+
+        页面中所有的内容都叫节点。
+
+        结构:
+            父级
+            子级
+            兄弟
+
+            祖孙节点  从下往上
+            子孙节点  从上往下
+
+        nodeType  查看节点类型
+
+        常用的类型:
+            document  9
+
+            元素节点   1
+
+            文本节点   3
+                空格和文字都是文本节点，在一个元素中既有空格
+                又有文字，算一个文本节点。
+
+            注释节点   8
+
+            属性节点   2
+
+            http://www.w3school.com.cn/xmldom/dom_nodetype.asp
+
+
+        childNodes[num]   -> 所有子节点(包含文本节点，注释节点)。
+
+        nodeName   节点的名字
+        nodeValue  节点的内容
+        tagName    大写标签   DIV
+
+
+
+	children  孩儿们 -> 找元素节点 
+           不是标准但是所有浏览器都兼容。
+
+
+
+	子级.parentNode   找父级
+
+        如果一直向上找，那么就
+        parentNode.parentNode
+
+        页面中最大的是document
+
+
+
+
+	DOM
+      文档对象模型(Document object  Model)
+
+      children -> 某个元素下的元素孩儿们
+
+      childNodes -> 所有的孩子们
+
+      parentNode -> 老爹
+
+      nodeType：
+        8  注释
+        1  元素
+        9  document
+        3  文本
+        2  属性  attributes[0]
+
+
+
+
+	parent.lastElementChild:
+            最后一个子节点
+
+
+        parent.firstElementChild:
+            第一个子节点
+
+
+
+	上个兄弟节点：
+            previousElementSibling
+
+        下一个兄弟节点：
+            nextElementSibling
+
+
+
+	box.id
+        box['id']
+
+        操作行间的属性
+            获取属性：
+                box.getAttribute(属性名)
+            设置属性:
+                box.setAttribute(属性名,属性值)
+            删除属性:
+                box.removeAttribute(属性名)
+
+	ES5
+            dataset 给行间添加属性的方式
+
+        box.dataset.index = 0
+
+
+	创建元素:
+            document.createElement(标签名)
+
+        在末位追加元素:
+            parent.appendChild(childNodes[0])
+
+            parent.insertBefore(添加谁,往谁前面添加)
+
+        删除
+            parent.removeChild(删除的那个)
+
+            高版本浏览器自带    
+                element.remove();
+        替换
+            replaceChild()
+
+        DOM的操作都是剪切，不是复制
+
+
+
+	动态数组
+            getElementsByTagName()
+            children
+            className
+
+        静态：
+            querySelectorAll
+
+
+
+	      firstElementChild
+        lastElementChild
+        previousElementSibling
+        nextElementSibling
+        setAttribute
+        getAttribute
+        removeAttribute
+        dataset
+        document.createElement(标签名)
+        parent.appendChild(子元素);
+        parent.insertBefore(要添加,往谁前面添加);
+        parent.removeChild(子元素)
+        element.remove();
+        replaceChild();替换
+        parent.replaceChild(newnode,oldnode);
+        cloneNode(true); 克隆节点true:还可以克隆子节点
+
+
+	replaceChild();
+
+        parent.replaceChild(newnode,oldnode);
+
+
+	克隆
+            cloneNode(true);
+                true:还可以克隆子节点
+
+
+
+
+	offsetParent:
+            定位父级是谁
+
+            默认定位父级为body
+
+            只要祖先级有定位那么，子级的定位父级为这个加了定位的元素
+
+            建议：
+                子级加定位父级也加定位。
+
+
+	      offsetLeft:
+            从子级的左外边框到定位父级的左内边框的距离
+            number类型
+
+        offsetTop：
+            从子级的上外边框到定位父级的上内边框的距离
+            number类型
+
+        正常使用它
+            1.子级要有定位，定位父级也要有定位
+            2.子级和定位父级必须要触发haslayout(加宽高、zoom...)
+            3.清除默认样式  
+
+
+	在ff下,如果子级有定位，
+        父级也有定位并且定位父级有边框和overflow: hidden
+        这个时候offsetLeft会重新计算
+
+            offsetLeft - 定位父级的border = 实际的offsetLeft
+
+
+
+	ele.getBoundingClientRect()
+            获取指定元素的细节信息 
+            返回值:{}
+
+            left,top,right,bottom 绝对位置（当前位置到底边的距离）
+
+
+
+	document.documentElement.clientWidth(可视区的宽度)
+
+        document.documentElement.clientHeight(可视区的高度)
+
+
+
+	  tBodies[0]
+        一个table可以有很多tBody,获取到的是一个集合
+    rows（一行,获取tr的）
+        也是一个集合，也是支持下标
+    
+    cells(一个单元格,获取td)
+
+    tHead
+
+    tFoot
+
+    createTFoot()
+    createTHead()
+
+    删除单元格
+        deleteRow(index)
+
+	      offsetParent  定位父级
+        offsetLeft/offsetTop  子级的左（上）外边框到定位父级的左（上）内边框的距离
+        getBoundingClientRect().left  绝对位置
+
+        obj.clientWidth/obj.clientHeight (宽/高 + padding)
+        obj.offsetWidth/obj.offsetHeight(宽/高 + padding + border)
+        obj.scrollWidth/obj.scrollHeight (被内容撑开的宽/高)
+
+        document.documentElement.clientWidth  可视区的宽度
+        document.documentElement.clientHeight  可视区的高度
+
+        tab.tBodies[0] 可以有很多tBody,获取到的是一个集合
+
+        tab.rows[1] （一行,获取tr的)是一个集合，也是支持下标
+
+        tab.cells[0] (一个单元格,获取td)
+
+        deleteRow(index) 删除单元格
+
+
+
+
+
+	箭头函数
+	// function fn(){
+    //     return 1;
+    // }
+    // let fn = () => 1;
+
+    // function fn(e){
+    //     return e;
+    // }
+    // //如果只有一个参数()是可以不带的
+    // let fn = e => e;
+
+    // function fn(a,b){
+    //     return a+b;
+    // }
+    
+    // let fn = (a,b) => a+b;
+    // console.log(fn(1,2));
+
+    // let fn = (a,b) => {
+    //     let k = 5;
+    //     return k+a+b;
+    // }
+    // console.log(fn(1,2));
+    
+        1.省了代码
+            特别是在带了回调函数的
+        2.this问题
+           ***永远***都跟父函数走
+    
+
+    // function fn(){
+    //     console.log(this);
+    //     let ff = () => {
+    //         console.log(this);
+    //     }
+    //     ff();
+    // }
+    // fn.call(document);
+
+
+    // document.onclick = function(){
+    //     // let ff = function () {
+    //     //     console.log(this); //window
+    //     // }
+
+    //     let ff = () => {
+    //         console.log(this); //document
+    //     }
+    //     ff();
+    // }
+
+
+
+
+
+	BOM:
+            Browser Object Model
+            浏览器对象模型
+        
+        window
+            通过window提供的api赋予开发者操作浏览器的能力。
+            基本上是不兼容的。
+
+        window.open(url,打开的方式,可以设置浏览器窗口)
+            第三个参数支持:
+                width=420,height=230,resizable=yes,scrollbars=yes
+
+            在Chrome中必须是在用户主动触发的情况下才会有用，不然会被拦截。
+
+            IE下是不会拦截的。
+
+
+
+	文本输入流:
+            
+            新窗口如果使用了document.write，那么等同于
+            开了个水龙头，开着一直不关闭就容易出错，一般的
+            症状就是js代码不执行
+
+            解决:
+                使用close()
+	
+	关闭窗口:
+            close()
+
+        在使用该方法的时候，IE会弹出一个提示框
+        Chrome直接关闭
+
+	
+
+
+	window.navigator.userAgent
+            浏览器用户信息
+            字符串
+        IE10及以下都是MSIE xx
+
+        注意:
+            这个信息容易被修改,只能做参考，不能100%肯定
+
+
+
+
+	地址栏信息
+            window.location.href
+        
+        查询信息:
+            window.location.search
+            ?到#号之间的信息
+        锚信息:
+            #及之后信息
+
+        *** onhashchange事件:
+            可以监听hash值的变化,只要hash值改变就会触发这个事件
+
+        ***改变hash值，页面是不会跳转的。
+
+        ***改变search值，页面是会跳转的。
+
+        hash，search都是可读可写的。
+
+
+
+	      改变hash值，页面是不会跳转的。
+
+        改变search值，页面是会跳转的。
+
+
+
+
+	可视区的宽度：
+            document.documentElement.clientWidth
+
+            window.innerWidth
+                不计算滚动条的。
+
+        可视区的高度:
+            document.documentElement.clientHeight
+
+            window.innerHeight
+                不计算滚动条的。
+
+
+	
+	上滚动距离
+            document.documentElement.scrollTop
+            window.pageYOffset
+
+        左滚动距离:
+            document.documentElement.scrollLeft
+            window.pageXOffset
+
+
+
+
+	onscroll
+            当滚动条滚动的时候触发这个事件
+
+
+
+	onresize:
+            窗口缩放的时候触发
+
+
+	document.documentElement.scrollTop 能读能写;
+        window.pageYOffset只能读不能写
+
+
+
+
+	历史记录
+            history
+            ***必须要在服务器下运行
+
+        go()
+        back()  
+        forward()
+
+        //后退一页
+        history.go(-1)
+        back()  
+        //前进一页
+        history.go(1);
+        forward()
+
+        history.pushState()  添加历史记录
+
+        history.pushState(数据,title,url);
+
+        history.replaceState() 替换当前的历史记录
+
+        onpopstate 取数据  
+
+        window.onpopstate = function(ev){
+            ev.state //本次的数据
+        }
+
+
+	事件:
+            onclick
+            onmouseover
+            onmouseout
+            onmouseenter
+            onmouseleave
+            onmousedown
+            onmouseup
+            onrezie
+            onscroll
+            onhashchange
+            onpopstate 取数据
+
+        事件绑定:
+            obj.addEventListener('不带on的事件名',事件函数,是否捕获(默认是false，不捕获))
+
+        解绑:
+            obj.removeEventListener(要解除的事件名,要解除的函数名,boolean);
+
+            注意：
+                *** 解除的函数必须为有名函数，匿名函数解不了
+
+
+
+
+
+	Event:事件对象
+            当用户触发某个事件的时候，记录下用户操作的一些细节的信息。
+
+        1.事件函数的第一个参数，一定是事件对象。
+        2.在IE和chrome中 全局有个event属性，就是事件对象
+
+        onmousemove  移动事件
+
+        clientX/clientY  鼠标到可视区的距离（不包含滚动条的）
+        pageX/pageY  鼠标到浏览器顶端的距离（包含滚动条）
+
+
+
+	ev.target  可以通过触发父级事件直接找到触发这个事件
+        的子级是谁。
+
+        *** 只能监听父级及以下的元素，兄弟级是监听不到的。
+        冒泡机制
+
+
+
+
+	事件流（事件模型）
+
+            1.捕获阶段：
+                从（window）上往下到目标点的阶段
+
+            2.到达目标阶段
+
+            3.冒泡
+                从（目标点）下往上到（window）的阶段
+
+        传统的事件是没有捕获的，只有冒泡。
+	      目标阶段不用先走捕获，只走顺序绑定，同事件，同名函数的下面会把上面的覆盖。
+
+
+
+	1.懒加载
+        2.histroy
+            histroy.pushState(数据,'',url)
+            window.onpopstate = function(ev){ev.state}  //操作前进后退就会触发
+            //后退一页
+            history.go(-1)
+            back()  
+            //前进一页
+            history.go(1);
+            forward()
+        
+        3.事件
+        
+        4.event  ev
+            ev.clientX
+            ev.pageX
+        5.ev.target  事件源
+        6.事件流（事件模型）
+            捕获
+            目标
+            冒泡
+        7.addEventListener
+        8.removeEventListener
+
+
+
+	      ev.cancelBubble = true
+             阻止冒泡,取消冒泡，
+             在目标点上取消冒泡，不让父级触发冒泡
+             不是标准，但是别的浏览器都支持
+
+        ev.stopPropagation();
+            阻止冒泡,取消冒泡，
+            在目标点上取消，不让父级触发。
+            是标准，但是低版本浏览器不支持
+
+        在目标点上取消，不让父级触发。
+
+
+
+
+	事件流:
+            捕获  从window起到目标点的过程
+            目标  事件触发的点
+            冒泡  从目标点到window
+        
+        问题:
+            当目标点绑定了事件函数，祖先级元素也绑定了同样的事件
+            函数，在触发目标事件的时候通过冒泡也会调用祖先级
+            的事件函数
+
+        解决冒泡:
+            ev.cancelBubble = true
+            ev.stopPropagation();
+        
+        ev event
+            当某个事件触发的时候，函数的第一个参数就为事件对象
+            能够记录事件触发时的细节信息。
+
+
+
+	      onfocus:
+            聚焦
+
+        onblur:
+            失焦
+
+
+	onkeydown  键盘按下
+        onkeyup    键盘抬起
+        onkeypress 事件会在键盘按键被按下并释放一个键时发生。
+
+        ev.keyCode 获取到键值
+
+            常用的键值
+                左上右下
+                    37 - 40
+                0-9
+                    48 - 57
+
+                a-z 
+                    65 - 90
+
+                回车 13
+
+                空格 32
+
+
+
+	小细节：
+            当通过键盘去监控（获取）输入的内容时，请使用onkeyup
+            因为onkeydown会少监听一次。
+
+        insertBefore：
+            如果第二个参数是没有的，那么等同于appendChild
+
+        addEventListener()
+            不管有没有写true，那么都有捕获的过程，只不过没监听而已
+            没监听不等于没有
+
+        shift -> 16
+
+        注意：
+            如果使用组合键的时候，后面的键会把前面的键给覆盖
+        
+        特殊键:
+            ev.shiftKey  
+            ev.altKey
+            ev.ctrlKey
+
+            布尔值 按着就是true,否则false
+
+
+
+	小细节：
+            当通过键盘去监控（获取）输入的内容时，请使用onkeyup
+            因为onkeydown会少监听一次。
+
+        insertBefore：
+            如果第二个参数是没有的，那么等同于appendChild
+
+
+
+	onchange：
+            当表单元素value值发生变化的时候触发
+
+
+
+
+	事件模型（事件流）
+            捕获、目标、冒泡
+
+        
+        addEventListener:第三个参数可以为一个对象
+
+        
+        capture：
+            是否捕获  true就捕获,false冒泡
+
+        once:
+            只触发一次,掉用完之后就解除绑定。
+
+
+        ev.cancelBubble = true
+
+        ev.stopPropagation();
+
+
+        注意：
+            如果在事件套事件的时候使用了addEventlistener
+            那么会出现重复绑定。
+
+
+
+
+	浏览器的默认行为:
+            你不想触发某个行为，浏览器偷偷的帮你触发了
+
+        传统的事件绑定阻止默认行为:
+            return false
+
+        事件绑定阻止默认行为:
+            ev.preventDefault();
+
+
+
+
+	oncontextmenu：
+        弹出右键菜单
+
+
+
+	onscroll
+            只有滚动条的情况下才会触发
+
+        onmousewheel：IE和chrome下
+            ev.wheelDelta
+                上：180   正数
+                下: -180  负数
+
+        DOMMouseScroll  FF
+            ev.detail
+                上: -3   负数
+                下: 3    正数
+
+
+
+	t.focus();
+            自动聚焦
+
+        select：
+            选中文本,也可以拿来聚焦
+
+        oninput:
+            文本内容发生变化的时候触发
+
+
+
+	为了优化用户体验，在按下某个键盘的时候，大概有430ms左右
+        事件让用户抬起，如果430ms左右之后还没有送开手，就说明
+        是长按。
+
+        所以说才会出现停顿效果。
+
+
+
+	为了优化用户体验，在按下某个键盘的时候，大概有430ms左右
+        事件让用户抬起，如果430ms左右之后还没有送开手，就说明
+        是长按。
+
+        所以说才会出现停顿效果。
+
+        解决:
+            按下的时候开个定时器，把间隔范围缩小到30左右
+
+        按下:
+        {
+            按上键:true,
+            按下键:flase,
+            按左键:true
+            按右键:flase
+        }
+        抬起:
+        {
+            按上键:false,
+            按下键:flase,
+            按左键:false
+            按右键:true
+        }
+
+
+
+
+	onclick
+        onmouseover
+        onmouseout
+        onmouseleave
+        onmouseenter
+        onmousedown
+        onmousemove
+        onmouseup
+        onkeydown
+        onkeyup
+        onresize
+        onscroll
+        onmousewheel
+        DOMMouseScroll
+        onchange
+        oninput
+        onfocus
+        onblur
+        onpopState
+        onhashchange
+        ondblclick
+
+
+
+
+	拖拽3大事件:
+            1.onmousedown
+            2.onmousemove
+            3.onmouseup
+        
+        move、up的时候绑在document身上就能解决快速移动和没在
+        元素本身释放的bug
+
+        在up的时候也把up事件清除,这样就不会导致
+        释放up的时候多次触发up事件中的代码。
+
+        在down的时候清除默认行为。
+
+	解除move:
+            1.把匿名函数变成有名函数
+
+
+
+
+	设置:
+            window.loaction.hash = 'page=1';
+
+        获取: 
+            console.log(window.loaction.hash)
+
+        监听变化
+            window.onhashchange = function(){}
+
+
+
+
+
+
+
+
+
+
+	
+        1.什么是git，什么是github
+
+        git版本控制工具
+        github程序员的基友网站、代码托管、远程仓库
+    
+
+    
+        2.如何才能版本控制？
+
+        .git文件 -> 到远程仓库创建一个项目 -> git clone下载到本地
+
+        git add . || git add 文件名
+
+        git commit -m "注释"
+
+        git push origin master
+
+    
+
+    
+        3.如何回滚指定版本？
+
+        git reset --hard 指定的版本
+    
+
+    
+        4.当提交代码的时候如果遇到了冲突你是如何解决的？
+
+        1.git fetch  把远程仓库的代码拉取下来（git pull）
+
+        2.git diff master origin/master  查看冲突
+
+        3.git merge origin/master  合并代码
+
+        4.git commit -a -m "注释"
+
+        5.git push origin master
+
+    
+
+    
+        5.什么是DOM？
+
+        document object model  文档对象模型
+
+        通过document提供的api赋予开发者操作页面的能力
+
+    
+    
+        
+        6.常用的节点类型有哪些？各代表数字几？用什么属性去查？
+
+        document        9
+
+        element         1    
+
+        text            3
+
+        注释             8
+
+        attributes      2
+
+        element.nodeType
+
+        nodeName || tagName
+
+        nodeValue
+
+    
+
+    
+        7.增删改查属性如何操作
+
+        setAttribute('key','value') 增加属性
+
+        removeAttribute('key') 删除属性
+
+        getAttribute('key') 查属性
+
+        el.dataset.index
+
+        box.index = 2;
+
+        console.log(box.index); //用.的方式去设置得用.的方式去获取
+
+        //如果通过getAttribute去获取行间的属性,获取不到就为null 
+        .的方式获取不到就为undefined
+        console.log(box.getAttribute('index'));
+
+    
+
+    
+        8.父节点、子节点、上、下一个兄弟节点各是什么？
+
+        parentNode
+
+        childNodes 在高版本浏览器下所有的子节点
+
+        children 元素节点
+
+        previousElementSibling
+        nextElementSibling
+    
+
+    // console.log(box.childNodes.length);
+
+    
+        
+        9.DOM的添加、删除、克隆、替换的方法有哪些？
+
+        document.createElement('标签名');可以自定义标签
+
+        document.appendChild();  后添加
+
+        parent.insertBefore(new,添加到它的位置前)
+
+            如果第二个参数为空，那么默认往最后一个添加
+
+        parent.removeChild(子节点)
+
+        子节点.remove();
+
+        element.cloneNode(true)
+
+        parent.replaceChild(new,old)
+
+
+    
+
+    // document.body.appendChild(document.createElement('自定义'))
+    
+
+    
+        
+        10.获取元素的宽度（带边框，不带边框，内容撑开的）
+
+        offsetWidth
+        clientWidth
+        scrollWidth
+    
+
+    
+        11.计算距离上下左右
+
+        offsetLeft
+        offsetTop
+
+        getBoudingClientRect() = {
+            let :
+            right:
+            bottom:
+            top:
+            width:
+            ....
+        }
+        
+    
+    
+    
+    
+    
+    
+    */
+//    let a =  1*'2' && 2/'2px'  || Infinity-1<Infinity && !!true && !!!!0 || 5>2;
+//    //console.log(a);
+//
+//    function fn(a=[]){
+//        for(var i=0;i<a.length;i++){
+//            if(a[i] === 0){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    console.log(fn());
+//    let arr=[];
+
+    //console.log(arr.length);
+//    var fn = function fn(a){
+//        debugger
+//        alert(fn);
+//        function fn2(a){
+//            alert(b);
+//            var b = 50;
+//            function b(){
+//                alert(5);
+//            }
+//            b();
+//        }
+//        var a = 30;
+//        alert(fn);
+//    }
+//    alert(fn());
+
+//    var fn = 80;
+//    function fn(a){
+//        debugger;
+//
+//        var a = undefined
+//
+//        alert(fn);
+//        function fn2(a){
+//
+//            var b = function(){};
+//
+//            alert(b);
+//            var b = 50;
+//            function b(a){
+//                alert(5);
+//            }
+//            b(b);
+//        }
+//        fn2();
+//        var a = 30;
+//        alert(fn);
+//    }
+//    fn(10);
+
+//    function callMe(){
+//        if( arguments.length == 1 ) {
+//            console.log( arguments[0] );
+//        }
+//    }
+//    //然后如此调用:
+//    callMe( 'maybe' );
+//    let body =document.querySelectorAll('body');
+//    document.documentElement.onclick = function(){
+//         var date = new Date();
+//         for(var i=0;i<500;i++){
+//             body.innerHTML += '<li>'+i+'</li>';
+//         }
+//         var date2 = new Date();
+//         console.log(date2 - date);
+//     }
+    obj={'name':'小红'}
+    obj2={};
+    for(var attr in obj){
+        obj2[attr] = obj[attr];
+    }
+
+    console.log(Object.assign(obj));
+    </script>
+</body>
+</html>
