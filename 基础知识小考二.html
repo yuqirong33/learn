@@ -29,11 +29,13 @@
     C. lis[2].parentNode
     D. ul.lastElementChild
 
+
     3.下列可以获取到值且不带单位的是： AC
     A. offsetLeft
     B. style.left
     C. getBoundingClientRect().left
     D. offsetRight
+
 
     4.<div abd="1"></div>,已获取到div，下列指令可以获取到abc的值是： C
     A. div['abc']
@@ -41,13 +43,29 @@
     C. div.getAttribute('abc')
     D. div.style.abc
 
+
     5.往节点n钱插入节点s的指令是： B
     A. n.appendChild(s)
     B. n.insertBefore(s)
     C. n.replaceChild(s)
     D. n.createChild
 
-    6.
+
+    6.var lis = ul.getEmentsByTagName('li');
+      for(var i=0;i<6;i++){
+        ul.innerHTML += '<li>'+i+'</li>';
+        lis[i].onclick = function(){
+            alert(this.innerHTML);
+        }
+      }
+      点击第一个li，弹什么: D
+      A. 0
+      B. 1
+      C. undefined
+      D. 不弹
+
+
+     7.
     */
     
 </script>
