@@ -62,8 +62,8 @@
           <file leaf-file-name="基础知识小考二.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../../基础知识小考二.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="460">
-                  <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+                <state relative-caret-position="817">
+                  <caret line="81" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -219,12 +219,12 @@
       <option name="presentableId" value="Default" />
       <updated>1516681537403</updated>
       <workItem from="1516681538563" duration="4738000" />
-      <workItem from="1516712120310" duration="3034000" />
+      <workItem from="1516712120310" duration="3491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7772000" />
+    <option name="totallyTimeSpent" value="8229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="23" width="1919" height="1056" extended-state="6" />
@@ -290,8 +290,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../基础知识小考二.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+        <state relative-caret-position="817">
+          <caret line="81" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
           <folding />
         </state>
       </provider>
