@@ -79,7 +79,19 @@
     D. window.location.hash
 
 
-    9.
+    9.var a = 10;
+      function(){
+         var b = c = 20;
+      }
+      fn();
+      alert(this.a);
+      alert(this.b);
+      alert(this.c);
+      以上代码执行的结果，第一次弹  A   ，第二次弹   C  ，第三次弹  B
+      A. 10
+      B. 20
+      C. undefined
+      D. 报错
     */
     
 </script>
