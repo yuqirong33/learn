@@ -269,12 +269,65 @@
         if(selector == '#'){
             return documentById(cName);
         }else{
-            for(var i = 0;i < aEle)
+            for(var i = 0;i < aEle){}
         }
      }
 
     */
+    window.onload = function () {
+      function $(){
+        var parent = document;
+        if(arguments.length == 2){
+          parent = arguments[1];
+        }
+
+        var aEle = parent.getElementsByTagName('*');
+        var selector = arguments[0][0];
+        var cName = arguments[0].substring(1);
+        console.log(arguments[0].substring(1));
+        var arr = [];
+
+        if(selector == '#'){
+          return document.getElementById(cName);
+        }else if(selector == '.'){
+          for(var i = 0;i < aEle.length;i++){
+            var sClass = aEle[i].className.split(' ');
+            for(var j = 0;j<sClass.length;i++){
+              if(sClass[j] == cName){
+                arr.push(aEle[i]);
+              }
+            }
+          }
+          return arr;
+        }else{
+          return parent.getElementsByTagName(arguments[0]);
+        }
+      }
+
+      var lis = $('.li1',$('#ul2'));//$('.li1');
+
+      for(var i=0;i<lis.length;i++){
+        lis[i].style.background = 'red';
+      }
+    }
+
 </script>
+<ul id="ul">
+  <li class="li1 li2 li3"></li>
+  <li></li>
+  <li class="li1 li2"></li>
+  <li></li>
+  <li class="li1"></li>
+  <li></li>
+</ul>
+<ul id="ul2">
+  <li class="li1 li2 li3"></li>
+  <li></li>
+  <li class="li1 li2"></li>
+  <li></li>
+  <li class="li1"></li>
+  <li></li>
+</ul>
 </body>
 </html>
 
