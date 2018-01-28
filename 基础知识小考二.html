@@ -244,6 +244,16 @@
      二.问答题
      1.className获取元素有兼容性问题，请封装一个函数，可以传入"#id",".class","tag"获取到元素返回
      方法一：
+     优点：代码量少，"#id",".class","tag"都能找到
+     缺点：只有高版本下才能使用，低版本不支持
+
+     function $(element,parent=document){
+        return parent.querySelectorAll('element');
+     }
+
+     方法二：
+     优点：兼容所有浏览器
+     缺点：
     */
 </script>
 </body>
