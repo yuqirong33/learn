@@ -348,7 +348,7 @@
         obj.addEventLister('DOMMouseScroll',fn);
 
         let down = null;
-        function(ev){
+        function fn(ev){
            if(ev.wheelDelta){
                down = ev.wheelDelta > 0 ? true:false;
            }else{
