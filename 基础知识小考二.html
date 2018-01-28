@@ -242,7 +242,7 @@
 
 
      二.问答题
-     1.className获取元素有兼容性问题，请封装一个函数，可以传入"#id",".class","tag"获取到元素返回
+     1.className获取元素有兼容性问题，请封装一个函数，可以传入"#id",".class","tag"获取到元素返回。
      方法一：
      优点：代码量少，"#id",".class","tag"都能找到
      缺点：只有高版本下才能使用，低版本不支持
@@ -257,77 +257,94 @@
      缺点：代码写的多
      function $(){
         var parent = document;
-        if(argument.length == 2){
-            parent = argument[1];
-        }
-
-        var aEle = parent.getElementsByTagName('*');
-        var selector = argument[0][0];
-        var cName = arguments[0].substring(1);
-        var arr = [];
-
-        if(selector == '#'){
-            return documentById(cName);
-        }else{
-            for(var i = 0;i < aEle){}
-        }
-     }
-
-    */
-    window.onload = function () {
-      function $(){
-        var parent = document;
         if(arguments.length == 2){
-          parent = arguments[1];
+            parent = arguments[1];
         }
 
         var aEle = parent.getElementsByTagName('*');
         var selector = arguments[0][0];
         var cName = arguments[0].substring(1);
-        console.log(arguments[0].substring(1));
         var arr = [];
 
         if(selector == '#'){
-          return document.getElementById(cName);
+            return document.getElementById(cName);
         }else if(selector == '.'){
           for(var i = 0;i < aEle.length;i++){
-            var sClass = aEle[i].className.split(' ');
-            for(var j = 0;j<sClass.length;i++){
-              if(sClass[j] == cName){
-                arr.push(aEle[i]);
+              var sClass = aEle[i].className.split('');
+              for(var j = 0;j<sClass.length;i++){
+                  if(sClass[j] == cName){
+                      arr.push(aEle[i]);
+                   }
               }
-            }
-          }
-          return arr;
+         }
+        return arr;
         }else{
-          return parent.getElementsByTagName(arguments[0]);
+            return parent.getElementsByTagName(arguments[0]);
         }
-      }
+     }
 
-      var lis = $('.li1',$('#ul2'));//$('.li1');
+     //调用
+     var lis = $('.li1',$('#ul2'));
+     for(var i=0;i<lis.length;i++){
+         lis[i].style.background = 'red';
+     }
 
-      for(var i=0;i<lis.length;i++){
-        lis[i].style.background = 'red';
-      }
-    }
+     //html
+     <ul id="ul">
+         <li class="li1 li2 li3"></li>
+         <li></li>
+         <li class="li1 li2"></li>
+         <li></li>
+         <li class="li1"></li>
+         <li></li>
+     </ul>
+     <ul id="ul2">
+         <li class="li1 li2 li3"></li>
+         <li></li>
+         <li class="li1 li2"></li>
+         <li></li>
+         <li class="li1"></li>
+         <li></li>
+     </ul>
 
+
+
+     2.请封装一个函数，实现传入元素，该元素可拖拽的功能。
+     function move(obj){
+        let disX = 0;
+        let disY = 0;
+
+        obj.onmousedown = function(ev){
+           disX = ev.pageX - obj.offsetLeft;
+           disY = ev.pageY - obj.offsetTop;
+
+           document.onmousemove = function(ev){
+               let mpageX = e.pageX;
+               let mpageY = e.pageY;
+               obj.style.left = (mpageX - disX) + 'px';
+               obj.style.top = (mpageY - disT) + 'px';
+           }
+        }
+
+        doucment.onmouseup = function(){
+           document.onmousemove = doucment.onmouseup = null;
+        }
+        return false;
+     }
+
+
+     3.请描述onmouseover和onmouseout与onmouseenter和onmouseleave事件的区别。
+     答：onmouseover和onmouseenter：在鼠标指针移动到元素时候触发的事件；
+        onmouseout和onmouseleave：在鼠标移出元素上时触发的事件；
+        区别：onmouseover和onmouseout 事件支持冒泡
+             onmouseenter和onmouseleave 事件不支持冒泡
+
+
+     4.
+
+
+    */
 </script>
-<ul id="ul">
-  <li class="li1 li2 li3"></li>
-  <li></li>
-  <li class="li1 li2"></li>
-  <li></li>
-  <li class="li1"></li>
-  <li></li>
-</ul>
-<ul id="ul2">
-  <li class="li1 li2 li3"></li>
-  <li></li>
-  <li class="li1 li2"></li>
-  <li></li>
-  <li class="li1"></li>
-  <li></li>
-</ul>
 </body>
 </html>
 
