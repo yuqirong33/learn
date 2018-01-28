@@ -340,7 +340,31 @@
              onmouseenter和onmouseleave 事件不支持冒泡
 
 
-     4.
+     4.滚轮事件的事件绑定和滚轮上下键值有兼容性问题，封装一个兼容滚轮事件的函数。
+     function wheel(obj,cb){
+        obj.addEventLister('mousewheel',fn);
+        obj.addEventLister('DOMMouseScroll',fn);
+
+        let down = null;
+        function(ev){
+           if(ev.wheelDelta){
+               down = ev.wheelDelta > 0 ? true:false;
+           }else{
+               down = ev.detail > 0 ? true:false;
+           }
+
+           cb && cb(down);
+           ev.preventDefaule();
+        }
+     }
+
+
+
+     5.请简述事件模型过程。
+     事件模型过程有三个阶段：
+     1.捕获：从window上往下到达目标点的阶段
+     2.目标：到达目标点的阶段
+     3.冒泡：从目标点下往上到window的阶段
 
 
     */
