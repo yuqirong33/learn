@@ -181,7 +181,69 @@
      D. 1203
 
 
-     21.
+     21.var a=5,b=6;alert(a+b+'10');执行结果是在浏览器窗口弹出：D
+     A. 5610
+     B. 21
+     C. ab10
+     D. 1110
+
+
+     22.一下代码显示结果是: C
+     var emp = new Array(3);
+     emp[1] = 1;
+     emp[2] = 2;
+     alert(emp[3]);
+     A. 1
+     B. 2
+     C. undefined
+     D. 报错
+
+
+     23.var x = 1;
+     function fn(n){n = n+1};
+     y = fn(x);
+     y的值为： D
+     A. 2
+     B. 1
+     C. 3
+     D. undefined
+
+
+     24.下列程序中alert按顺序分别弹出什么：B  A  B
+     var a = 10;
+     function test(){
+        a = 100;
+        alert(a);
+        alert(this.a);
+        var a;
+        alert(a);
+     }
+     test();
+     A. 10
+     B. 100
+     C. undefined
+     D. 程序报错
+
+
+     25.以下代码中，会出现什么结果：第一次弹   A  ，第二次弹   A   ，第三次弹   B
+     function fn1(){
+        var a = 0;
+        function fn2(){ ++a; alert(a);}
+        return fn2;
+     }
+     fn1()();
+     var newFn = fn1();
+     newFn();
+     newFn();
+     A. 1
+     B. 2
+     C. 0
+     D. 3
+
+
+     二.问答题
+     1.className获取元素有兼容性问题，请封装一个函数，可以传入"#id",".class","tag"获取到元素返回
+     方法一：
     */
 </script>
 </body>
