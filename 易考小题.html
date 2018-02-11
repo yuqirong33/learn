@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>基础知识小考</title>
+</head>
+<body>
+<script>
+    /*
+       基础知识小考二
+    */
+    /*
+    一、选择题
+
+    1、<ul>
+          <li></li>
+          <li></li>
+       </ul>
+    下列指令哪个可以获取到ul下第一个li:   CD
+    A. ul.children
+    B. ul.childNode[0]
+    C. ul.firstElementChild
+    D. ul.getElementsByTagName('li')[0]
+
+
+    2.已知ul下有6个li，已通过children获取到ul下的li，请问下列指令获取到的是同一个li的是： BD
+    A. lis[3].perviousElementSibing
+    B. lis[4].nextElementSibling
+    C. lis[2].parentNode
+    D. ul.lastElementChild
+
+
+    3.下列可以获取到值且不带单位的是： AC
+    A. offsetLeft
+    B. style.left
+    C. getBoundingClientRect().left
+    D. offsetRight
+
+
+    4.<div abd="1"></div>,已获取到div，下列指令可以获取到abc的值是： C
+    A. div['abc']
+    B. div.abc
+    C. div.getAttribute('abc')
+    D. div.style.abc
+
+
+    5.往节点n钱插入节点s的指令是： B
+    A. n.appendChild(s)
+    B. n.insertBefore(s)
+    C. n.replaceChild(s)
+    D. n.createChild
+
+
+    6.var lis = ul.getEmentsByTagName('li');
+      for(var i=0;i<6;i++){
+        ul.innerHTML += '<li>'+i+'</li>';
+        lis[i].onclick = function(){
+            alert(this.innerHTML);
+        }
+      }
+     点击第一个li，弹什么: D
+     A. 0
+     B. 1
+     C. undefined
+     D. 不弹
+
+
+    7.下列关于表格描述正确的是： AC
+    A. 要获取表格头部，可以用table.tHead
+    B. 获取表格主体的命令是table.body,获取到的是一个集合
+    C. table.tFoot.row[0]获取到的是表格尾部的第一个tr
+    D. table.tHead.rows[1].cells[1]获取到的是表格头部第一个tr下的第一个td
+
+
+    8.用来获取浏览器地址栏信息的是： A
+    A. window.location.href
+    B. window.location.userAgebt
+    C. window,location.search
+    D. window.location.hash
+
+
+    9.var a = 10;
+      function fn(){
+         var b = c = 20;
+      }
+      fn();
+      alert(this.a);
+      alert(this.b);
+      alert(this.c);
+      以上代码执行的结果，第一次弹  A   ，第二次弹   C  ，第三次弹  B
+      A. 10
+      B. 20
+      C. undefined
+      D. 报错
+
+
+     10.容器div的高度是200px,边框10px,容器里文档高度是300px,请问div.offsetHeight是   B   ，div.clientHeight是   A   ,div.scrollHeight是   C
+     A. 200
+     B. 220
+     C. 300
+     D. 320
+
+
+     11.要做一个绝对居中的弹窗，需要获取可是区域宽度，下列哪种指令可以获取  AC
+     A. document.body.clientWidth
+     B. window innerWidth
+     C. document.documentElement.clientWidth
+     D. window.clientWidth
+
+
+     12.下列的指令可以组织冒泡的是：B
+     A. e.cancelBubble()
+     B. e.stopPropagation()
+     C. e.preventDefault
+     D. return false
+
+
+     13.addEventListener绑定事件，阻止默认行为可以用下列哪个指令：C
+     A. e.stopPropagation()
+     B. return false
+     C. e.preventDefault
+     D. e.target
+
+
+     14.div.addEventLiistener('click',fn,true),可以用下列哪个指令解绑fn函数：B
+     A. div.removeEventListener('click',fn);
+     B. div.removeEventListener('click',fn,true);
+     C. div.removeEventListenter('click',fn,false);
+     D. div.onclick = null;
+
+
+     15.下面对event对象描述不正确的是：BC
+     A. 事件对象是用来记录事件触发时，改事件的详细信息
+     B. 函数的第一个参数，就是事件对象
+     C. 事件对象记录的信息都相同，比如都有altKey
+     D. e.which 是记录鼠标或者键盘按下的键值
+
+
+     16.下面代码的运行结果是：第一次弹  C   第二次弹   E
+     var b = 10;
+     function fn1(){
+        var a=b=20;
+        b++;
+     }
+     fn1();
+     fn1();
+     alert(b);
+     alert(a);
+     A. 10
+     B. 20
+     C. 21
+     D. undefined
+     E. 报错
+
+
+     17.var a=999;a++;alert(++a);请问执行后弹的结果是什么：C
+     A.999
+     B.1000
+     C.1001
+     D.1002
+
+
+     18.在javascript数组中，实现向数组末尾添加一个元素的方法是：C
+     A. unshift()
+     B. shift()
+     C. push()
+     D. pop()
+
+
+     19.var a=[1,2,3];console.log(a.join());运行后的结果是输出： B
+     A. 123
+     B. 1,2,3
+     C. 1 2 3
+     D. [1,2,3]
+
+
+     20.在js中'1205'-3的运行结果是：A
+     A. 1202
+     B. 1208
+     C. 12053
+     D. 1203
+
+
+     21.var a=5,b=6;alert(a+b+'10');执行结果是在浏览器窗口弹出：D
+     A. 5610
+     B. 21
+     C. ab10
+     D. 1110
+
+
+     22.一下代码显示结果是: C
+     var emp = new Array(3);
+     emp[1] = 1;
+     emp[2] = 2;
+     alert(emp[3]);
+     A. 1
+     B. 2
+     C. undefined
+     D. 报错
+
+
+     23.var x = 1;
+     function fn(n){n = n+1};
+     y = fn(x);
+     y的值为： D
+     A. 2
+     B. 1
+     C. 3
+     D. undefined
+
+
+     24.下列程序中alert按顺序分别弹出什么：B  A  B
+     var a = 10;
+     function test(){
+        a = 100;
+        alert(a);
+        alert(this.a);
+        var a;
+        alert(a);
+     }
+     test();
+     A. 10
+     B. 100
+     C. undefined
+     D. 程序报错
+
+
+     25.以下代码中，会出现什么结果：第一次弹   A  ，第二次弹   A   ，第三次弹   B
+     function fn1(){
+        var a = 0;
+        function fn2(){ ++a; alert(a);}
+        return fn2;
+     }
+     fn1()();
+     var newFn = fn1();
+     newFn();
+     newFn();
+     A. 1
+     B. 2
+     C. 0
+     D. 3
+
+
+     二.问答题
+     1.className获取元素有兼容性问题，请封装一个函数，可以传入"#id",".class","tag"获取到元素返回。
+     方法一：
+     优点：代码量少，"#id",".class","tag"都能找到
+     缺点：只有高版本下才能使用，低版本不支持
+
+     function $(element,parent=document){
+        return parent.querySelectorAll(element);
+     }
+
+
+     方法二：
+     优点：兼容所有浏览器
+     缺点：代码写的多
+     function $(){
+        var parent = document;
+        if(arguments.length == 2){
+            parent = arguments[1];
+        }
+
+        var aEle = parent.getElementsByTagName('*');
+        var selector = arguments[0][0];
+        var cName = arguments[0].substring(1);
+        var arr = [];
+
+        if(selector == '#'){
+            return document.getElementById(cName);
+        }else if(selector == '.'){
+          for(var i = 0;i < aEle.length;i++){
+              var sClass = aEle[i].className.split('');
+              for(var j = 0;j<sClass.length;i++){
+                  if(sClass[j] == cName){
+                      arr.push(aEle[i]);
+                   }
+              }
+         }
+        return arr;
+        }else{
+            return parent.getElementsByTagName(arguments[0]);
+        }
+     }
+
+     //调用
+     var lis = $('.li1',$('#ul2'));
+     for(var i=0;i<lis.length;i++){
+         lis[i].style.background = 'red';
+     }
+
+     //html
+     <ul id="ul">
+         <li class="li1 li2 li3"></li>
+         <li></li>
+         <li class="li1 li2"></li>
+         <li></li>
+         <li class="li1"></li>
+         <li></li>
+     </ul>
+     <ul id="ul2">
+         <li class="li1 li2 li3"></li>
+         <li></li>
+         <li class="li1 li2"></li>
+         <li></li>
+         <li class="li1"></li>
+         <li></li>
+     </ul>
+
+
+
+     2.请封装一个函数，实现传入元素，该元素可拖拽的功能。
+     function move(obj){
+        let disX = 0;
+        let disY = 0;
+
+        obj.onmousedown = function(ev){
+           disX = ev.pageX - obj.offsetLeft;
+           disY = ev.pageY - obj.offsetTop;
+
+           document.onmousemove = function(ev){
+               let mpageX = e.pageX;
+               let mpageY = e.pageY;
+               obj.style.left = (mpageX - disX) + 'px';
+               obj.style.top = (mpageY - disT) + 'px';
+           }
+        }
+
+        doucment.onmouseup = function(){
+           document.onmousemove = doucment.onmouseup = null;
+        }
+        return false;
+     }
+
+
+
+     3.请描述onmouseover和onmouseout与onmouseenter和onmouseleave事件的区别。
+     答：onmouseover和onmouseenter：在鼠标指针移动到元素时候触发的事件；
+        onmouseout和onmouseleave：在鼠标移出元素上时触发的事件；
+        区别：onmouseover和onmouseout 事件支持冒泡
+             onmouseenter和onmouseleave 事件不支持冒泡
+
+
+
+     4.滚轮事件的事件绑定和滚轮上下键值有兼容性问题，封装一个兼容滚轮事件的函数。
+     function wheel(obj,cb){
+        obj.addEventLister('mousewheel',fn);
+        obj.addEventLister('DOMMouseScroll',fn);
+
+        let down = null;
+        function fn(ev){
+           if(ev.wheelDelta){
+               down = ev.wheelDelta > 0 ? true:false;
+           }else{
+               down = ev.detail > 0 ? true:false;
+           }
+
+           cb && cb(down);
+           ev.preventDefaule();
+        }
+     }
+
+
+
+     5.请简述事件模型过程。
+     事件模型过程有三个阶段：
+     1.捕获：从window上往下到达目标点的阶段
+     2.目标：到达目标点的阶段
+     3.冒泡：从目标点下往上到window的阶段
+    */
+</script>
+</body>
+</html>
+
+
+
