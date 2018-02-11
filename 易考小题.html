@@ -44,7 +44,19 @@
 
     2.let str = 'dhsadh189j1dj28dn2ijsakdsa',查看字符串中哪个字母出现的次数最多，出现了多少次：
     方法一：
-    
+    let str = 'dhsadh189j1dj28dn2ijsakdsa'；
+    let obj={};
+    for(var i=0;i<str.length;i++){
+        if(obj[arr[i]]){
+            obj[arr[i]] ++;
+        }else{
+            obj[arr[i]] = true;
+        }
+    }
+    console.log(obj);  //{1: 2, 2: 2, 8: 2, 9: true, d: 5, h: 2, s: 3, a: 3, j: 3, k:true, n:true,s:3}
+
+    let min = -Infinity;
+    let n = '';
     */
      
 </script>
