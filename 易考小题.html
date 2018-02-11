@@ -57,6 +57,17 @@
 
     let min = -Infinity;
     let n = '';
+    for(var attr in obj){
+        if(obj[attr] > min){
+            min = obj[attr];
+            n = attr;
+        }
+    }
+    console.log('出现字母次数最多的是：' + n + '出现的次数为' + min);
+
+
+    方法二：
+    
     */
      
 </script>
