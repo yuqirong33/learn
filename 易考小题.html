@@ -70,6 +70,15 @@
         let str = 'dhsadh189j1dj28dn2ijsakdsa';
         str = str.split('').sort().join('');
         let min = -Infinity;
+        let nnn = '';
+
+        str.replace(/(\w)\1+/g,function($0,$1){
+            if($0.length > min){
+                min = $0.length;
+                nnn = $1;
+            }
+        });
+        console.log()
          
     */
      
