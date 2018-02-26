@@ -122,9 +122,20 @@
       5.手写排序
 
 
+      
 
-      6.手写url?a=abc
+      6.手写例如,url?a=abc,返回对象{a:abc}
       let str = 'http://www.miaov.com?user=一刀&pass=123';
+      function queryString(str){
+          let obj = {};
+          let arr = str.split('?')[1].split('&');
+          arr.forEach(e=>{
+              let a = e.split('=');
+              obj[a[0]] = a[1]
+          });
+          return obj;
+      }
+      console.log(queryString(str));  //-> {user:一刀,pass:123}
       
     */
      
