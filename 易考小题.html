@@ -112,8 +112,10 @@
       第三种：
       (function(global,factory){
           'use strict'   //严格模式
-          factory()
-      })();
+          factory(global);
+      })(typeof window !== 'undefined' ? window : this,function(global,noGlobal){
+
+      };
     */
      
 </script>
